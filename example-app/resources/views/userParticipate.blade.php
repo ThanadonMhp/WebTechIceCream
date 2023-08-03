@@ -10,13 +10,15 @@
             <p>Number of Staff</p>
         </div>
     </div>
-    <div class="flex-col items-start p-2">
-        <div class="py-5">Event Description</div>
-        <p class="py-100">......................</p>
+    <div class="flex justify-between p-6 text-xl bg-white rounded-lg">
+        <ul>
+            <li class="text-xl font-medium mb-4 px-12 pb-10 ">Event description</li>
+            <li class="text-xl font-medium mb-4 p-10 ">.............</li>
+            <li class="text-xl font-medium mb-4 p-10 ">.............</li>
+            <li class="text-xl font-medium mb-4 p-10 ">.............</li>
+        </ul>
     </div>
-    <div class="absolute bottom-20 right-20">
-        <button class="bg-light-blue rounded-full">
-            Become Staff
-        </button>
-    </div>
+<div class="flex flex-row-reverse py-5">
+    <button class="bg-light-blue w-1/4 p-4 rounded-full">Become Staff</button>
+</div>
 @endsection

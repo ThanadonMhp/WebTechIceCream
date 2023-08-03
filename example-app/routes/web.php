@@ -40,4 +40,8 @@ Route::get('/allmain' , function () {
     return view('allMain');
 });
 
+Route::get('/myevent' , function () {
+    return view('myEvent');
+});
+
 require __DIR__.'/auth.php';

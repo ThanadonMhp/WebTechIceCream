@@ -7,13 +7,13 @@
         <div class="items-center justify-between w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
-                    <a href="{{ url('/') }}"
+                    <a href="{{ url('/myevent') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         <strong>My Events</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/') }}"
+                    <a href="{{ url('/allmain') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         <strong>Events</strong>
                     </a>

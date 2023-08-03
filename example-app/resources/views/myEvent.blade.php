@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<h1 class="text-4xl mb-6 py-3 pl-12"><strong>Events</strong></h1>
+<h1 class="text-4xl mb-6 py-3 pl-12"><strong>My Events</strong></h1>
 <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
     <div class="">
         <div>

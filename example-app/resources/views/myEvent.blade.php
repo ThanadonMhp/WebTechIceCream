@@ -5,7 +5,7 @@
 <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
     <div class="">
         <div>
-            <p class="">Event Title1</p>
+            <p class="">Event Title1</strong></p>
             <div class="">
                 <ul>
                     <li class="text-xl font-medium px-12">Event description</li>
@@ -18,7 +18,7 @@
 <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
     <div class="">
         <div>
-            <p class="">Event Title2</p>
+            <p class="">Event Title2</strong></p>
             <div class="">
                 <ul>
                     <li class="text-xl font-medium px-12">Event description</li>
@@ -31,7 +31,7 @@
 <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
     <div class="">
         <div>
-            <p class="">Event Title3</p>
+            <p class="">Event Title3</strong></p>
             <div class="">
                 <ul>
                     <li class="text-xl font-medium px-12">Event description</li>
@@ -44,8 +44,8 @@
 <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
     <div class="">
         <div>
-            <p class="">Event Title4</p>
-            <div class="w-1">
+            <p class="">Event Title4</strong></p>
+            <div class="">
                 <ul>
                     <li class="text-xl font-medium px-12">Event description</li>
                     <li class="text-xl font-medium px-12">.............</li>
@@ -57,7 +57,7 @@
 <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
     <div class="">
         <div>
-            <p class="">Event Title5</p>
+            <p class="">Event Title5</strong></p>
             <div class="">
                 <ul>
                     <li class="text-xl font-medium px-12">Event description</li>

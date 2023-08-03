@@ -45,7 +45,7 @@
     <div class="">
         <div>
             <p class="">Event Title4</p>
-            <div class="w-1">
+            <div class="">
                 <ul>
                     <li class="text-xl font-medium px-12">Event description</li>
                     <li class="text-xl font-medium px-12">.............</li>

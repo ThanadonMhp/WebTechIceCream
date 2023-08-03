@@ -19,6 +19,6 @@
     </ul>
 </div>
 <div class="flex flex-row-reverse py-5">
-    <button class="bg-light-blue w-1/4 p-4 rounded-full">Become Staff</button>
+    <button class="bg-light-blue w-1/4 p-4 rounded-full">Create Event</button>
 </div>
 @endsection

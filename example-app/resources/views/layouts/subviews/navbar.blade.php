@@ -33,14 +33,18 @@
                 <li>
                     <a href="{{ url('/') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
-                        Events
-                    </a>
-                </li>
-                <li>
                         My Events
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('/') }}"
+                       class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/') }}"
+                       class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         Create Event
                     </a>
                 </li>

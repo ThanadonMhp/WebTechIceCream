@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/myprofile', function() {
+Route::get('/userprofile', function() {
     return view('userProfile');
 });
 
@@ -42,6 +42,10 @@ Route::get('/allmain' , function () {
 
 Route::get('/myevent' , function () {
     return view('myEvent');
+});
+
+Route::get('/createevent' , function () {
+    return view('createEvent');
 });
 
 require __DIR__.'/auth.php';

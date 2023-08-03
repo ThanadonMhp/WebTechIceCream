@@ -36,4 +36,8 @@ Route::get('/userparticipate' , function () {
     return view('userParticipate');
 });
 
+Route::get('/allmain' , function () {
+    return view('allMain');
+});
+
 require __DIR__.'/auth.php';

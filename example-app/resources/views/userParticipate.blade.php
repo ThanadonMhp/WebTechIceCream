@@ -10,7 +10,7 @@
             <p>Number of Staff</p>
         </div>
     </div>
-    <div class="flex justify-between p-6 text-xl bg-white rounded-lg">
+    <div class="flex justify-between mx-5 p-6 text-xl bg-white rounded-lg">
         <ul>
             <li class="text-xl font-medium mb-4 px-12 pb-10 ">Event description</li>
             <li class="text-xl font-medium mb-4 p-10 ">.............</li>

@@ -1,6 +1,6 @@
 <nav class="bg-light-purple border-gray-200 py-4 text-xl">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
-        <a href="#" class="flex items-center">
+        <a href="{{ url('/userprofile') }}" class="flex items-center">
             <img src="https://www.svgrepo.com/show/499962/music.svg" class="h-6 mr-3 sm:h-9" alt="Logo">
             <span class="self-center text-xl font-semibold whitespace-nowrap"><strong>IceCream</strong></span>
         </a>
@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/') }}"
+                    <a href="{{ url('/createevent') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         <strong>Create Event</strong>
                     </a>

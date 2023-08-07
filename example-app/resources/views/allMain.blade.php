@@ -33,8 +33,8 @@
     </div>
 </div>
 
-
-
+ 
+<!--Pagination-->
 <nav aria-label="Page navigation example">
   <ul class="flex justify-center -space-x-px text-base h-10">
     <li>

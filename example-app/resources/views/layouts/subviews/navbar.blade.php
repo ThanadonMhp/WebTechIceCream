@@ -3,7 +3,7 @@
         <a href="{{ url('/userprofile') }}" class="flex items-center">
             <!--Logo Icon-->
             <img src="/images/ice-cream.png" class="h-6 mr-3 sm:h-9" alt="Logo">
-            <span class="self-center text-xl font-semibold whitespace-nowrap"><strong>IceCream</strong></span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap"><strong>My Profile</strong></span>
         </a>
         <div class="items-center justify-between w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">

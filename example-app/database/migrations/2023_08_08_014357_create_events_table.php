@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->event_id();
-            $table->budget();
-            $table->eventName();
-            $table->detail();
-            $table->status(); //pending,available,end
-            $table->size(); //How much event can handle
+            $table->id();
+            $table->string('budget');
+            $table->string('eventname');
+            $table->string('detail');
+            $table->string('status'); //pending,available,end
+            $table->integer('size'); //How much event can handle
+            $table->softDeletes();
         });
     }
 

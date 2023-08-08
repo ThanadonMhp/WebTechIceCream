@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/allmain') }}"
+                    <a href="{{ url('/events') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         <strong>Events</strong>
                     </a>

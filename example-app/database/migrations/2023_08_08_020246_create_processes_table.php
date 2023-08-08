@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('processes', function (Blueprint $table) {
-            $table->process_id();
-            $table->status(); //for KanBan
-            $table->name();
+            $table->id();
+            $table->string('status'); //for KanBan
+            $table->string('name');
             $table->foreignIdFor(\App\Models\Event::class); // event_id (FK)
+            $table->softDeletes();
         });
     }
 

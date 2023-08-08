@@ -1,39 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-<h1 class="text-4xl mb-6 py-3 pl-12"><strong>Events</strong></h1>
 
-<div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
-    <div class="">
-        <p class="">Event Title1</p>
-            <ul>
-                <li class="text-xl font-medium px-12">Event description</li>
-                <li class="text-xl font-medium px-12">.............</li>
-            </ul>
+    <h1 class="text-4xl mb-6 py-3 pl-12"><strong>Events</strong></h1>
+    @foreach ($events as $event)
+    <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
+        <div class="">
+            <p class="">Event Title1</p>
+                <ul>
+                    <li class="text-xl font-medium px-12">Event description</li>
+                    <li class="text-xl font-medium px-12">.............</li>
+                </ul>
+        </div>
     </div>
-</div>
+    @endforeach
 
-<div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
-    <div class="">
-        <p class="">Event Title2</p>
-        <ul>
-            <li class="text-xl font-medium px-12">Event description</li>
-            <li class="text-xl font-medium px-12">.............</li>
-        </ul>
-    </div>
-</div>
 
-<div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
-    <div class="">
-        <p class="">Event Title3</p>
-        <ul>
-            <li class="text-xl font-medium px-12">Event description</li>
-            <li class="text-xl font-medium px-12">.............</li>
-        </ul>
-    </div>
-</div>
-
- 
 <!--Pagination-->
 <nav aria-label="Page navigation example">
   <ul class="flex justify-center -space-x-px text-base h-10">

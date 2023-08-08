@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,7 @@ Route::get('/userparticipate' , function () {
     return view('userParticipate');
 });
 
-Route::get('/allmain' , function () {
-    return view('allMain');
-});
+Route::get('/events' , [EventController::class, 'index'])->name('event.index');
 
 Route::get('/myevent' , function () {
     return view('myEvent');

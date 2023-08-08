@@ -14,13 +14,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/events') }}"
+                    <a href="{{ route('events.index') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         <strong>Events</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/createevent') }}"
+                    <a href="{{ route('events.create') }}"
                        class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
                         <strong>Create Event</strong>
                     </a>

@@ -31,14 +31,10 @@ Route::get('/userparticipate' , function () {
     return view('userParticipate');
 });
 
-Route::get('/events' , [EventController::class, 'index'])->name('event.index');
+Route::resource('/events', EventController::class);
 
 Route::get('/myevent' , function () {
     return view('myEvent');
-});
-
-Route::get('/createevent' , function () {
-    return view('createEvent');
 });
 
 Route::get('/staffdashboard' , function () {

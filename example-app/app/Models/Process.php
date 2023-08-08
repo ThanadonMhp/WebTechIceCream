@@ -5,8 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Enums\ProcessStatus;
+use App\Models\Event;
 
 class Process extends Model
 {
+    protected $casts = [
+        'status' => ProcessStatus::class
+    ];
+
     use HasFactory, softDeletes;
+
+    public function event() {
+        return $this->belongsTo(Event::class);
+    }
 }

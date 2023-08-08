@@ -3,7 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 use App\Models\Event;
+
 
 return new class extends Migration
 {
@@ -12,13 +14,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('processes', function (Blueprint $table) {
+        Schema::create('user_event', function (Blueprint $table) {
             $table->id();
-            $table->string('status'); //for KanBan
-            $table->string('name');
-            $table->foreignIdFor(Event::class); // event_id (FK)
             $table->timestamps();
-            $table->softDeletes();
+            $table->foreignIdFor(Event::class);
+            $table->foreignIdFor(User::class);
+            $table->string('role')->default('PARTICIPANT'); //host, paticipant
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('processes');
+        Schema::dropIfExists('user_event');
     }
 };

@@ -6,10 +6,9 @@
     @foreach ($events as $event)
     <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg">
         <div class="">
-            <p class="">Event Title1</p>
+            <p class="">{{ $event->name }}</p>
                 <ul>
-                    <li class="text-xl font-medium px-12">Event description</li>
-                    <li class="text-xl font-medium px-12">.............</li>
+                    <li class="text-xl font-medium px-12">{{ $event->detail }}</li>
                 </ul>
         </div>
     </div>

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('budget');
             $table->string('eventname');
+            $table->integer('budget');
             $table->string('detail');
-            $table->string('status'); //pending,available,end
+            $table->string('status'); //hide, show
             $table->integer('size'); //How much event can handle
+            $table->timestamps();
             $table->softDeletes();
         });
     }

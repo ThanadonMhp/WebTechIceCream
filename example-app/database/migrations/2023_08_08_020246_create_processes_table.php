@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('status'); //for KanBan
             $table->string('name');
             $table->foreignIdFor(\App\Models\Event::class); // event_id (FK)
+            $table->timestamps();
             $table->softDeletes();
         });
     }

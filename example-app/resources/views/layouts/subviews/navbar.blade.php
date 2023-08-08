@@ -2,7 +2,7 @@
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
         <a href="{{ url('/userprofile') }}" class="flex items-center">
             <!--Logo Icon-->
-            <img src="https://www.svgrepo.com/show/499962/music.svg" class="h-6 mr-3 sm:h-9" alt="Logo">
+            <img src="/images/ice-cream.png" class="h-6 mr-3 sm:h-9" alt="Logo">
             <span class="self-center text-xl font-semibold whitespace-nowrap"><strong>IceCream</strong></span>
         </a>
         <div class="items-center justify-between w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-    @csrf
     <h1 class="text-3xl">Event Detail</h1>
     <div class="flex h4/5 p-2 py-10 w-11/12">
         <div class="w-3/4">
@@ -19,9 +18,15 @@
             <p class="">{{ $event->detail }}</p>
         </ul>
     </div>
-    <div class="flex py-5">
-        <div class="flex flex-row-reverse py-5 w-2/3">
-            <button class="bg-light-blue w-1/4 p-4 rounded-full">Done</button>
+    <div class="flex py-5 w-2/3 w-11/12">
+        <div class="w-2/3">
+            <a class="bg-light-blue w-1/4 p-4 rounded-full"
+               href = "{{ route('events.edit', ['event' => $event]) }}">
+                Edit
+            </a>
+        </div>
+        <div class="flex py-5 w-2/3">
+            <button class="bg-light-blue w-1/4 p-4 rounded-full">Become Staff</button>
         </div>
     </div>
 @endsection

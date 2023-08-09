@@ -40,4 +40,18 @@ class EventController extends Controller
         return redirect()->route('events.index');
     }
 
+    public function show(Event $event)
+    {
+        return view('events.show', [
+            'event' => $event
+        ] );
+    }
+
+    public function edit(Event $event)
+    {
+        return view('events.edit' , [
+            'event' => $event
+        ]);
+    }
+
 }

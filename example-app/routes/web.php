@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::get('/dashboard', function () {
 Route::get('/userparticipate' , function () {
     return view('userParticipate');
 });
+
+Route::resource('/users', UserController::class);
 
 Route::resource('/events', EventController::class);
 

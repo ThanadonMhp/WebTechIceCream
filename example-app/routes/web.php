@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::get('/userparticipate' , function () {
 });
 
 Route::resource('/events', EventController::class);
+
+Route::resource('/kanban', KanbanController::class);
 
 Route::get('/myevent' , function () {
     return view('myEvent');

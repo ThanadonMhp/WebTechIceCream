@@ -11,9 +11,17 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    resolve: {
+        alias: {
+            'dragula': 'dragula',
+        }
+    },
     server: {
         hmr: {
             host: 'localhost',
         },
     },
+    define: {
+        global: "window"
+    }
 });

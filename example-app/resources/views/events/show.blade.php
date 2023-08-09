@@ -19,14 +19,16 @@
         </ul>
     </div>
     <div class="flex py-5 w-2/3 w-11/12">
-        <div class="w-2/3">
-            <a class="bg-light-blue w-1/4 p-4 rounded-full"
+        <div class="flex py-5 w-2/3">
+            <a class= "bg-light-blue w-1/4 p-4 rounded-full"
                href = "{{ route('events.edit', ['event' => $event]) }}">
                 Edit
             </a>
         </div>
-        <div class="flex py-5 w-2/3">
-            <button class="bg-light-blue w-1/4 p-4 rounded-full">Become Staff</button>
+        <div class="flex flex-row-reverse py-5 w-2/3">
+            <a class="bg-light-blue w-1/4 p-4 rounded-full">
+                Become Staff
+            </a>
         </div>
     </div>
 @endsection

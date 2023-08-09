@@ -5,14 +5,18 @@
 <div class="flex justify-between p-6 text-xl bg-white rounded-lg">
     <div class="w-1/2 pr-4 flex flex-col items-center">
         <img src="/images/kawaii-cat.jpg" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
-        <p class="mt-2"><strong>UID</strong>: YourUID123</p>
+        <p class="mt-2"><strong>UID</strong>: {{ $user->id }}</p>
     </div>
     <div class="w-1/2">
         <ul>
-            <li class="text-xl font-medium mb-4 px-12 pb-10 border-b-2 border-black">Name</li>
-            <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">Email</li>
-            <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">Certificate</li>
-            <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">Year</li>
+            <li class="text-xl font-medium mb-4 px-12 pb-10 border-b-2 border-black">
+                Name : {{ $user->name }}</li>
+            <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                Email: {{ $user->email }}</li>
+            <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                Certificate : {{ $user->certificate }}</li>
+            <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                Year : {{ $user->year }}</li>
         </ul>
         <div class="flex flex-row-reverse">
             <button class="bg-light-blue w-1/4 p-4 rounded-full">Edit</button>

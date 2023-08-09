@@ -1,6 +1,8 @@
 <nav class="bg-light-purple border-gray-200 py-4 text-xl">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
-        <img src="/images/ice-cream.png" class="h-6 mr-3 sm:h-9" alt="Logo">
+        <a href="{{ url('/') }}">
+            <img src="/images/ice-cream.png" class="h-6 mr-3 sm:h-9" alt="Logo">
+        </a>
 
         <div class="items-center justify-between w-full lg:flex lg:w-auto lg:order-0" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -30,6 +32,7 @@
             <div class="mr-4">
                 <a href="{{ route('users.show', ['user' => Auth::user() ]) }}">
                     {{ Auth::user()->name }}
+                </a>
             </div>
             <div>
                 <form action="{{ route('logout') }}" method='POST'>

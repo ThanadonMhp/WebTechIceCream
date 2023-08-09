@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $events = Event::get();
         return view('events.index' , [
             'events' => $events
             ]

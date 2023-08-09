@@ -24,13 +24,13 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $event_name = $request->get('eventname');
+        $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
         $event_detail = $request->get('detail');
         $event_size = $request->get('size');
 
         $event = new Event();
-        $event->eventname = $event_name;
+        $event->eventName = $event_name;
         $event->budget = $event_budget;
         $event->detail = $event_detail;
         $event->status = "PENDING";
@@ -38,6 +38,39 @@ class EventController extends Controller
 
         $event->save();
         return redirect()->route('events.index');
+    }
+
+    public function show(Event $event)
+    {
+        return view('events.show', [
+            'event' => $event
+        ] );
+    }
+
+    public function edit(Event $event)
+    {
+        return view('events.edit' , [
+            'event' => $event
+        ]);
+    }
+
+    public function update(Request $request, Event $event)
+    {
+        $event_name = $request->get('eventName');
+        $event_budget = $request->get('budget');
+        $event_detail = $request->get('detail');
+        $event_size = $request->get('size');
+
+        $event = new Event();
+        $event->eventName = $event_name;
+        $event->budget = $event_budget;
+        $event->detail = $event_detail;
+        $event->status = "PENDING";
+        $event->size = $event_size;
+
+        $event->save();
+
+        return redirect()->route('events.show', ['event' => $event]);
     }
 
 }

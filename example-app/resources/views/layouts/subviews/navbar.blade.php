@@ -28,8 +28,8 @@
         @if( Auth::check() )
         <div class="flex items-center">
             <div class="mr-4">
-                <a href="{{ url('/userprofile') }}">
-                {{ Auth::user()->name }}
+                <a href="{{ route('users.show', ['user' => Auth::user() ]) }}">
+                    {{ Auth::user()->name }}
             </div>
             <div>
                 <form action="{{ route('logout') }}" method='POST'>

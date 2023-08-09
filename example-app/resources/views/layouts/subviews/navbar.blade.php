@@ -28,6 +28,7 @@
         @if( Auth::check() )
         <div class="flex items-center">
             <div class="mr-4">
+                <a href="{{ url('/userprofile') }}">
                 {{ Auth::user()->name }}
             </div>
             <div>

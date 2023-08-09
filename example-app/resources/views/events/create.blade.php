@@ -28,7 +28,7 @@
     </div>
     <div class="flex h4/5 p-2 py-10 w-11/12">
         <div class="w-2/3">
-            <p>Event Title</p>
+            <p>Event Budget</p>
             <input required type="text" id="budget" name="budget" autocomplete="off"
                    placeholder="Put in event budget"
                    class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">

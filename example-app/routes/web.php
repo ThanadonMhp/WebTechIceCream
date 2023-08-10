@@ -26,7 +26,7 @@ Route::get('/userprofile', function() {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/userparticipate' , function () {

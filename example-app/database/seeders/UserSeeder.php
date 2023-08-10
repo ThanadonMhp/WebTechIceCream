@@ -16,9 +16,18 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = new User();
+        $user->name = 'Test_Account01';
+        $user->email = 'test01@gmail.com';
+        $user->password = Hash::make("password");
+        $user->certificate = fake()->realTextBetween(10, 20, 5);
+        $user->year = fake()->numberBetween(1,8);
+        $user->save();
+
+        $user = new User();
         $user->name = 'Admin';
         $user->email = 'admin@gmail.com';
         $user->password = Hash::make("password");
+        $user->role = "ADMIN";
         $user->save();
 
         $user = User::factory()->count(10)->create();

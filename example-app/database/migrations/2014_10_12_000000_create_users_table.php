@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('year')->nullable();
             $table->string('certificate')->nullable();
+            $table->enum('role',['ADMIN','USER'])->default('USER');
 
             $table->rememberToken();
             $table->timestamps();

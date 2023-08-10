@@ -14,4 +14,23 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    public function edit(User $user)
+    {
+        return view('users.edit' ,[
+            'user' => $user
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->year = $request->get('year');
+        $user->certificate = $request->get('certificate');
+
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user]);
+    }
 }

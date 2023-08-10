@@ -19,7 +19,10 @@
                 Year : {{ $user->year }}</li>
         </ul>
         <div class="flex flex-row-reverse">
-            <button class="bg-light-blue w-1/4 p-4 rounded-full">Edit</button>
+            <a class="bg-light-blue w-1/4 p-4 rounded-full text-center"
+                href = "{{ route('users.edit', ['user' => $user]) }}">
+                Edit
+            </a>
         </div>
     </div>
 </div>

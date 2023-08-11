@@ -204,7 +204,7 @@
     drake.on('drop', function (el,target,source) {
 
         console.log(target.id);
-        axios.post('{{route("edit.postit")}}', {
+        axios.post('{{ route("kanban.create") }}', {
             drop: target.id
         })
         .then(function (response) {

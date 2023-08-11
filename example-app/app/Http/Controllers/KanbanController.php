@@ -24,6 +24,7 @@ class KanbanController extends Controller
     public function store(Request $request){
         $postIt = new Process();
         $postIt->name = $request->get('postIt');
+        $postIt->status = 'UPCOMING';
         $postIt->save();
 
         return redirect()->route('kanban.index');

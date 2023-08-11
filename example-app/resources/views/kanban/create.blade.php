@@ -2,7 +2,7 @@
 
 <div class="flex flex-col items-center text-gray-300 mt-2 px-1">
     <div class="flex gap-3">
-        <form action="{{ route('kanban.createPostIt') }}" method="POST">
+        <form action="{{ route('kanban.store') }}" method="POST">
             @csrf
             <div>
                 <input type="text" id="postIt" name="postIt" placeholder="Write something" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "></input>

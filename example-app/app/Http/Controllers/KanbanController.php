@@ -17,9 +17,20 @@ class KanbanController extends Controller
         ]);
     }
 
-    public function createEvent(Event $event){
-        return view('kanban.create', [
-            'kanban' => $event
-        ]);
+    public function createPostIt(Request $request){
+        $postIt = new Process();
+        $postIt->name = $request->get('name');
+        $postIt->save();
+
+        return redirect()->route('kanban.index');
     }
+
+    // public function store(Request $request) {
+    //     return "asdas";
+    // }
+
+    // public function editPostIt(Request $request) {
+    //     return $request->get('drop');
+    // }
+
 }

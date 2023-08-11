@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div class="h-screen p-2 ">
+<div class="flex flex-wrap h-screen p-2 ">
 
-  <div class="grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 gap-5">
+  <div class="grid grid-cols-8  gap-5">
     <!-- To-do -->
     <div class="bg-white  rounded px-2 py-2 col-start-1 col-span-2">
       <!-- board category header -->
@@ -15,10 +15,13 @@
           <h2 class="bg-red-100 text-sm w-max px-1 rounded mr-2 text-gray-700">To-do</h2>
           <p class="text-gray-400 text-sm">3</p>
         </div>
-        <div class="flex items-center text-gray-300">
-          <p class="mr-2 text-2xl">---</p>
-          <p class="text-2xl">+</p>
-        </div>
+
+        <!-- Add post-it Button -->
+        <button type="button" class="inline-flex justify-center items-center px-2 text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">
+            <div class="flex items-center text-gray-300">
+                <p class="text-2xl">+</p>
+            </div>
+        </button>
       </div>
       <!-- board card -->
       <div class="grid grid-rows-2 gap-2" id="To_do">
@@ -63,12 +66,14 @@
       <div class="flex flex-row justify-between items-center mb-2 mx-1">
         <div class="flex items-center">
           <h2 class="bg-yellow-100 text-sm w-max px-1 rounded mr-2 text-gray-700">WIP</h2>
-          <p class="text-gray-400 text-sm">2</p>
+          <p class="text-gray-400 text-sm p-1">2</p>
         </div>
-        <div class="flex items-center text-gray-300">
-          <p class="mr-2 text-2xl">---</p>
-          <p class="text-2xl">+</p>
-        </div>
+        <!-- Add post-it Button -->
+        <button type="button" class="inline-flex justify-center items-center px-2 text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">
+            <div class="flex items-center text-gray-300">
+                <p class="text-2xl">+</p>
+            </div>
+        </button>
       </div>
       <!-- board card -->
       <div class="grid grid-rows-2 gap-2 " id="WIP">
@@ -104,10 +109,12 @@
           <h2 class="bg-green-100 text-sm w-max px-1 rounded mr-2 text-gray-700">Complete</h2>
           <p class="text-gray-400 text-sm">4</p>
         </div>
-        <div class="flex items-center">
-          <p class="text-gray-300 mr-2 text-2xl">---</p>
-          <p class="text-gray-300 text-2xl">+</p>
-        </div>
+        <!-- Add post-it Button -->
+        <button type="button" class="inline-flex justify-center items-center px-2 text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">
+            <div class="flex items-center text-gray-300">
+                <p class="text-2xl">+</p>
+            </div>
+        </button>
       </div>
       <!-- board card -->
       <div class="grid grid-rows-2 gap-2 " id="Complete">
@@ -191,9 +198,32 @@
 
 <script type="module">
 
-    dragula([document.getElementById("To_do")]);
-    dragula([document.getElementById("WIP")]);
-    dragula([document.getElementById("Complete")]);
+    const drake = dragula([document.getElementById("To_do"),document.getElementById("WIP"),document.getElementById("Complete")]);
+
+
+    drake.on('drop', function (el,target,source) {
+
+        console.log(target.id);
+        axios.post('{{route("edit.postit")}}', {
+            drop: target.id
+        })
+        .then(function (response) {
+            alert(response.data);
+        })
+        .catch(function (error) {
+            
+        });
+        })
+  
 
 </script>
+
+ 
+<!-- <script>
+
+    document.getElementById('kanban_event_button').on('click', function (){
+        console.log("work")
+    });
+
+</script> -->
 @endsection

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('processes', function (Blueprint $table) {
             $table->id();
-            $table->enum('status',['todo','wip','done'])->default('todo'); //for KanBan
+            $table->enum('status',['UPCOMING','INPROCESS','COMPLETED'])->default('UPCOMING'); //for KanBan
             $table->string('name');
             $table->foreignIdFor(Event::class); // event_id (FK)
             $table->timestamps();

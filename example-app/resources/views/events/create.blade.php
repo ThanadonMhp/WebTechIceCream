@@ -34,7 +34,9 @@
                    class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
         </div>
         <div class="flex flex-row-reverse py-5 w-2/3">
-            <button class="bg-light-blue w-1/4 p-4 rounded-full">Create Event</button>
+            <button class="bg-light-blue w-1/4 p-4 rounded-full">
+                Create Event
+            </button>
         </div>
     </div>
 </form>

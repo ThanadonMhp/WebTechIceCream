@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $events = Event::get();
         return view('events.index' , [
             'events' => $events
             ]
@@ -56,17 +56,11 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-        $event_name = $request->get('eventName');
-        $event_budget = $request->get('budget');
-        $event_detail = $request->get('detail');
-        $event_size = $request->get('size');
-
-        $event = new Event();
-        $event->eventName = $event_name;
-        $event->budget = $event_budget;
-        $event->detail = $event_detail;
+        $event->eventName = $request->get('eventName');
+        $event->budget = $request->get('budget');
+        $event->detail = $request->get('detail');
         $event->status = "PENDING";
-        $event->size = $event_size;
+        $event->size = $request->get('size');
 
         $event->save();
 

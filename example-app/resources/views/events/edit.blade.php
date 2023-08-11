@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<form action="{{ route('events.update', ['event' => $event]) }} method="POST">
+<form action="{{ route('events.update', ['event' => $event]) }}" method="POST">
     @csrf
     @method('PUT')
     <h1 class="text-3xl">Event Detail</h1>

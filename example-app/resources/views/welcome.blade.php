@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
-    <h1 class="text-4xl mb-6 py-3 pl-12">
+<div class="h-screen">
+    <h1 class="text-4xl mb-6  pl-12">
         Welcome to IceCream group event web page.
     </h1>
     <h2 class="text-2xl mb-6 py-3 pl-12">
@@ -24,4 +25,5 @@
             <li class="text-xl font-medium px-12">ธนดล มหาพรรณ</li>
         </ul>
     </div>
+</div>
 @endsection

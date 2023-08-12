@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="flex flex-wrap h-screen p-2 ">
+<div class="flex flex-wrap justify-center h-screen p-2 ">
 
   <div class="grid grid-cols-8  gap-5">
     <!-- To-do -->

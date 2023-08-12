@@ -30,6 +30,9 @@ class KanbanController extends Controller
         return redirect()->route('kanban.index', ['event' => $event]);
     }
 
+    public function destroy(){
+
+    }
     // public function store(Request $request) {
     //     return "asdas";
     // }

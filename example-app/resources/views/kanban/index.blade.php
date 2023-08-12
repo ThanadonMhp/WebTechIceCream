@@ -13,7 +13,6 @@
       <div class="flex flex-row justify-between items-center mb-2 mx-1">
         <div class="flex items-center">
           <h2 class="bg-red-100 text-sm w-max px-1 rounded mr-2 text-gray-700">To-do</h2>
-          <p class="text-gray-400 text-sm">3</p>
         </div>
 
         <!-- Add post-it Button -->
@@ -24,36 +23,15 @@
         </button>
       </div>
       <!-- board card -->
+
       <div class="grid grid-rows-2 gap-2" id="To_do">
+        @foreach($kanban as $kanban)
         <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Social media</h3>
-          <p class="bg-red-100 text-xs w-max p-1 rounded mr-2 text-gray-700">To-do</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">2</p>
+            <h3 class="text-sm mb-3 text-gray-700"></h3>
+            <p class="bg-red-100 text-xs w-max p-1 rounded mr-2 text-gray-700">To-do</p>
+            <div class="flex flex-row items-center mt-2">test1</div>
         </div>
-
-        <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Review survey results</h3>
-          <p class="bg-red-100 text-xs w-max p-1 rounded mr-2 text-gray-700">To-do</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">1</p>
-        </div>
-
-        <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Research video marketing</h3>
-          <p class="bg-red-100 text-xs w-max p-1 rounded mr-2 text-gray-700">To-do</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">3</p>
-        </div>
+        @endforeach
       </div>
 
 
@@ -77,6 +55,7 @@
       </div>
       <!-- board card -->
       <div class="grid grid-rows-2 gap-2 " id="WIP">
+      @foreach($kanban as $kanban)
         <div class="p-2 rounded shadow-sm border-gray-100 border-2">
           <h3 class="text-sm mb-3 text-gray-700">Blog post live</h3>
           <p class="bg-yellow-100 text-xs w-max p-1 rounded mr-2 text-gray-700">WIP</p>
@@ -87,17 +66,7 @@
           <p class="text-xs text-gray-500 mt-2">Jun 21, 2019</p>
           <p class="text-xs text-gray-500 mt-2">2</p>
         </div>
-
-        <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Email campaign</h3>
-          <p class="bg-yellow-100 text-xs w-max p-1 rounded mr-2 text-gray-700">WIP</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">Jun 21, 2019 &#10141; Jun 21, 2019</p>
-          <p class="text-xs text-gray-500 mt-2">1</p>
-        </div>
+      @endforeach
       </div>
     </div>
 
@@ -167,6 +136,11 @@
   </div>
 </div>
 
+
+
+
+
+
 <style>
     .sortable-handler {
   touch-action: none;
@@ -217,13 +191,4 @@
 
 
 </script>
-
-
-<!-- <script>
-
-    document.getElementById('kanban_event_button').on('click', function (){
-        console.log("work")
-    });
-
-</script> -->
 @endsection

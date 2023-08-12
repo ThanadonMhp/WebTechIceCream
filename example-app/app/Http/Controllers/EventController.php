@@ -47,6 +47,8 @@ class EventController extends Controller
 
         $userEvent = new UserEvent();
         $userEvent->role = 'HOST';
+        $userEvent->event_id = $event->id;
+        $userEvent->user_id = $user->id;
 
         $userEvent->save();
 

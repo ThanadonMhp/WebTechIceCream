@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
+use App\Models\UserEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -27,6 +29,8 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
         $event_detail = $request->get('detail');
@@ -41,6 +45,10 @@ class EventController extends Controller
 
         $event->save();
 
+        $userEvent = new UserEvent();
+        $userEvent->role = 'HOST';
+
+        $userEvent->save();
 
         return redirect()->route('events.index');
     }

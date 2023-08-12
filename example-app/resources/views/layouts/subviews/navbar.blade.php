@@ -8,7 +8,7 @@
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
                     <a href="{{ route('events.index') }}"
-                       class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
+                       class="nav-menu {{ Route::currentRouteName() === 'events.index' ? 'active' : '' }}">
                         <strong>Events</strong>
                     </a>
                 </li>
@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <a href="{{ route('events.create') }}"
-                       class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
+                       class="nav-menu {{ Route::currentRouteName() === 'events.create' ? 'active' : '' }}">
                         <strong>Create Event</strong>
                     </a>
                 </li>

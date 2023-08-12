@@ -35,6 +35,7 @@ Route::resource('/events', EventController::class);
 
 Route::resource('/kanban', KanbanController::class);
 
+
 Route::get('/myevent' , function () {
     return view('myEvent');
 });

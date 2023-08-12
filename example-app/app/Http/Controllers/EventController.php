@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
+use App\Models\UserEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class EventController extends Controller
@@ -17,13 +20,26 @@ class EventController extends Controller
         );
     }
 
+    public function myevents()
+    {
+        $events = Event::get();
+        return view('events.index' , [
+                'events' => $events
+            ]
+        );
+    }
+
     public function create()
     {
+        Gate::authorize('create',Event::class);
+
         return view('events.create');
     }
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
         $event_detail = $request->get('detail');
@@ -37,18 +53,28 @@ class EventController extends Controller
         $event->size = $event_size;
 
         $event->save();
+
+        $userEvent = new UserEvent();
+        $userEvent->role = 'HOST';
+        $userEvent->event_id = $event->id;
+        $userEvent->user_id = $user->id;
+
+        $userEvent->save();
+
         return redirect()->route('events.index');
     }
 
-    public function show(Event $event)
+    public function show(string $eventid)
     {
+        $event = Event::find($eventid);
         return view('events.show', [
             'event' => $event
         ] );
     }
 
-    public function edit(Event $event)
+    public function edit(string $eventid)
     {
+        $event = Event::find($eventid);
         return view('events.edit' , [
             'event' => $event
         ]);
@@ -64,7 +90,9 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events.show', ['event' => $event]);
+        return redirect()->route('events.show', ['eventid' => $event]);
     }
+
+
 
 }

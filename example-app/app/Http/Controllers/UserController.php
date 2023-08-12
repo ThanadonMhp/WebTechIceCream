@@ -33,4 +33,5 @@ class UserController extends Controller
 
         return redirect()->route('users.show', ['user' => $user]);
     }
+
 }

@@ -31,14 +31,17 @@ Route::get('/userparticipate' , function () {
 
 Route::resource('/users', UserController::class);
 
-Route::resource('/events', EventController::class);
+Route::controller(EventController::class)->group(function () {
+   Route::get('/events', [EventController::class, 'index'] )->name('events.index');
+   Route::get('/events/myevents', [EventController::class, 'myevents'] )->name('events.myevents');
+   Route::get('/events/create', [EventController::class, 'create'] )->name('events.create');
+   Route::post('/events/store', [EventController::class, 'store'] )->name('events.store');
+   Route::get('/events/show/{eventid}', [EventController::class, 'show'] )->name('events.show');
+   Route::get('/events/edit/{eventid}', [EventController::class, 'edit'] )->name('events.edit');
+   Route::post('/events/update', [EventController::class, 'update'] )->name('events.update');
+});
 
 Route::resource('/kanban', KanbanController::class);
-
-
-Route::get('/myevent' , function () {
-    return view('myEvent');
-});
 
 Route::get('/staffdashboard' , function () {
     return view('staffDashboard');

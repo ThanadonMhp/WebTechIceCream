@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class EventController extends Controller
@@ -19,6 +20,8 @@ class EventController extends Controller
 
     public function create()
     {
+        Gate::authorize('create',Event::class);
+
         return view('events.create');
     }
 
@@ -37,6 +40,8 @@ class EventController extends Controller
         $event->size = $event_size;
 
         $event->save();
+
+
         return redirect()->route('events.index');
     }
 

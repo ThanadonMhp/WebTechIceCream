@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\Kanban;
 use App\Models\Process;
 use Illuminate\Http\Request;
 
@@ -21,12 +20,14 @@ class KanbanController extends Controller
         return view('kanban.create');
     }
 
-    public function store(Request $request){
-        $postIt = new Process();
-        $postIt->name = $request->get('postIt');
-        $postIt->save();
+    public function store(Request $request, Event $event){
+        $process = new Process();
+        $process->name = $request->get('postIt');
+        $process->status = "UPCOMING";
+        $process->event_id = 1;
+        $process->save();
 
-        return redirect()->route('kanban.index');
+        return redirect()->route('kanban.index', ['event' => $event]);
     }
 
     // public function store(Request $request) {

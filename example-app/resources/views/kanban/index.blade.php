@@ -55,7 +55,7 @@
           <p class="text-xs text-gray-500 mt-2">3</p>
         </div>
       </div>
-    
+
 
       @include('kanban.create')
     </div>
@@ -211,14 +211,14 @@
             alert(response.data);
         })
         .catch(function (error) {
-            
+
         });
         })
-  
+
 
 </script>
 
- 
+
 <!-- <script>
 
     document.getElementById('kanban_event_button').on('click', function (){

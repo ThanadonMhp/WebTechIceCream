@@ -18,12 +18,12 @@ class Event extends Model
 
     use HasFactory, SoftDeletes;
 
-    public function user(): HasMany
+    public function users()
     {
-        return $this->belongsTo(User::class)->withPivot('role');
+        return $this->BelongsToMany(User::class);
     }
 
-    public function process(): HasMany
+    public function processes(): HasMany
     {
         return $this->hasMany(Process::class);
     }

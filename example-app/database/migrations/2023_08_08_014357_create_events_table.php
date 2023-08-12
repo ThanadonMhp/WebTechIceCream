@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('eventName');
             $table->integer('budget');
             $table->string('detail');
-            $table->enum('status',['PENDING','AVAILABLE','DONE'])->default('PENDING'); //pending,hide,show
-            $table->integer('size'); //How much event can handle
+            $table->string('status')->default('PENDING'); //pending,hide,show
+            $table->integer('size'); //How many participants are needed?
             $table->timestamps();
             $table->softDeletes();
         });

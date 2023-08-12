@@ -21,13 +21,13 @@
     <div class="flex h4/5 p-2 py-10 w-11/12">
         <div class="flex py-5 w-2/3">
             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-               href = "{{ route('events.edit', ['event' => $event]) }}">
+               href = "{{ route('events.edit', ['eventid' => $event]) }}">
                 Edit
             </a>
         </div>
         <div class="flex py-5 w-2/3">
             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-               href = "{{ route('kanban.index', ['event' => $event]) }}">
+               href = "{{ route('kanban.index', ['eventid' => $event]) }}">
                 Kanban
             </a>
         </div>

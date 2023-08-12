@@ -13,8 +13,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/myevent') }}"
-                       class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
+                    <a href="{{ route('events.myevents') }}"
+                       class="nav-menu {{ Route::currentRouteName() === 'events.myevents' ? 'active' : '' }}">
                         <strong>My Events</strong>
                     </a>
                 </li>

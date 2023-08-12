@@ -20,6 +20,15 @@ class EventController extends Controller
         );
     }
 
+    public function myevents()
+    {
+        $events = Event::get();
+        return view('events.index' , [
+                'events' => $events
+            ]
+        );
+    }
+
     public function create()
     {
         Gate::authorize('create',Event::class);
@@ -55,15 +64,17 @@ class EventController extends Controller
         return redirect()->route('events.index');
     }
 
-    public function show(Event $event)
+    public function show(string $eventid)
     {
+        $event = Event::find($eventid);
         return view('events.show', [
             'event' => $event
         ] );
     }
 
-    public function edit(Event $event)
+    public function edit(string $eventid)
     {
+        $event = Event::find($eventid);
         return view('events.edit' , [
             'event' => $event
         ]);
@@ -79,7 +90,9 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events.show', ['event' => $event]);
+        return redirect()->route('events.show', ['eventid' => $event]);
     }
+
+
 
 }

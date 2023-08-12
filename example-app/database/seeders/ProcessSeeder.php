@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Event;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Process;
 
-class EventSeeder extends Seeder
+class ProcessSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $event = Event::factory()->count(20)->create();
+        $process = Process::factory()->count(40)->create();
     }
 }

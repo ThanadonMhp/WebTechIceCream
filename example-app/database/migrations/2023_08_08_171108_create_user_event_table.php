@@ -14,12 +14,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_event', function (Blueprint $table) {
+        Schema::create('event_user', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(Event::class);
             $table->foreignIdFor(User::class);
-            $table->string('role')->default('PARTICIPANT'); //host, paticipant
+            $table->enum('role', ['PARTICIPANT', 'HOST'])->default('PARTICIPANT')->comment('HOST or PARTICIPANT');
         });
     }
 

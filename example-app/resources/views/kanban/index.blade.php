@@ -25,11 +25,11 @@
       <!-- board card -->
 
       <div class="grid grid-rows-2 gap-2" id="To_do">
-        @foreach($kanban as $kanban)
+        @foreach($kanbans as $kanban)
         <div class="p-2 rounded shadow-sm border-gray-100 border-2">
             <h3 class="text-sm mb-3 text-gray-700"></h3>
             <p class="bg-red-100 text-xs w-max p-1 rounded mr-2 text-gray-700">To-do</p>
-            <div class="flex flex-row items-center mt-2">test1</div>
+            <div class="flex flex-row items-center mt-2">{{ $kanban->name }}</div>
         </div>
         @endforeach
       </div>
@@ -55,18 +55,8 @@
       </div>
       <!-- board card -->
       <div class="grid grid-rows-2 gap-2 " id="WIP">
-      @foreach($kanban as $kanban)
         <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Blog post live</h3>
-          <p class="bg-yellow-100 text-xs w-max p-1 rounded mr-2 text-gray-700">WIP</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">Jun 21, 2019</p>
-          <p class="text-xs text-gray-500 mt-2">2</p>
         </div>
-      @endforeach
       </div>
     </div>
 
@@ -88,50 +78,10 @@
       <!-- board card -->
       <div class="grid grid-rows-2 gap-2 " id="Complete">
         <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Morning emails and to-do list</h3>
-          <p class="bg-green-100 text-xs w-max p-1 rounded mr-2 text-gray-700">Complete</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
           </div>
-          <p class="text-xs text-gray-500 mt-2">Jun 21, 2019</p>
-          <p class="text-xs text-gray-500 mt-2">1</p>
         </div>
 
-        <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Blog post</h3>
-          <p class="bg-green-100 text-xs w-max p-1 rounded mr-2 text-gray-700">Complete</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">Jun 20, 2019</p>
-          <p class="text-xs text-gray-500 mt-2">5</p>
-        </div>
-
-        <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Reconcile accounts</h3>
-          <p class="bg-green-100 text-xs w-max p-1 rounded mr-2 text-gray-700">Complete</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">Jun 19, 2019</p>
-          <p class="text-xs text-gray-600 mt-2">4</p>
-        </div>
-
-        <div class="p-2 rounded shadow-sm border-gray-100 border-2">
-          <h3 class="text-sm mb-3 text-gray-700">Website AB test</h3>
-          <p class="bg-green-100 text-xs w-max p-1 rounded mr-2 text-gray-700">Complete</p>
-          <div class="flex flex-row items-center mt-2">
-            <div class="bg-gray-300 rounded-full w-4 h-4 mr-3"></div>
-            <a href="#" class="text-xs text-gray-500">Sophie Worso</a>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">Jun 18, 2019</p>
-          <p class="text-xs text-gray-600 mt-2">3</p>
-        </div>
       </div>
-
     </div>
   </div>
 </div>

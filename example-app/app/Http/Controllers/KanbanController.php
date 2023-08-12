@@ -12,7 +12,7 @@ class KanbanController extends Controller
     {
         $kanbans = Process::all();
         return view('kanban.index', [
-            'kanban' => $kanbans
+            'kanbans' => $kanbans
         ]);
     }
     public function create()

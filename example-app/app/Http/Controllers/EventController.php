@@ -27,6 +27,8 @@ class EventController extends Controller
                 'events' => $events
             ]
         );
+
+        $event = UserEvent::get();
     }
 
     public function create()

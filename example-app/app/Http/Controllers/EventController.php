@@ -12,7 +12,8 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::get();
+
+        $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(5);
         return view('events.index' , [
             'events' => $events
             ]
@@ -22,7 +23,6 @@ class EventController extends Controller
     public function myevents()
     {
         $user = Auth::user();
-        $user->events;
         return view('events.index' , [
                 'events' =>  $user->events
             ]
@@ -31,7 +31,7 @@ class EventController extends Controller
 
     public function pending() {
 
-        $events = Event::where('status', 'like', 'PENDING')->get();
+        $events = Event::where('status', 'like', EventStatus::PENDING)->paginate(5);
 
         return view('events.index' , [
             'events' =>  $events

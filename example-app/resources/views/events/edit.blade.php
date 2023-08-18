@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<form action="{{ route('events.update', ['event' => $event]) }}" method="POST">
+<form action="{{ route('events.update', ['event' => $event]) }}" method="POST" enctype="multipart/form-data">
     @csrf
-    method("PUT")
+    @method('PUT')
     <h1 class="text-3xl">Event Detail</h1>
     <div class="flex h4/5 p-2 py-10 w-11/12">
         <div class="w-3/4">

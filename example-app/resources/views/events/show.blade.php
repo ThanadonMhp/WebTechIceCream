@@ -23,12 +23,12 @@
         <div class="flex py-5 w-2/3">
             @if(!Auth::user()->isAdmin())
                 <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                   href = "{{ route('events.edit', ['eventid' => $event]) }}">
+                   href = "{{ route('events.edit', ['event' => $event]) }}">
                     Edit
                 </a>
             @else
                 <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                   href = "{{ route('events.edit', ['eventid' => $event]) }}">
+                   href = "{{ route('events.edit', ['event' => $event]) }}">
                     Event Approval
                 </a>
             @endif

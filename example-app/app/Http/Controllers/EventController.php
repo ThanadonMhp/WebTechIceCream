@@ -25,7 +25,7 @@ class EventController extends Controller
         $user = Auth::user();
         $participatedEvents = Event::whereHas('users', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->paginate();
+        })->paginate(5);
         return view('events.index' , [
                 'events' =>  $participatedEvents
             ]
@@ -90,9 +90,8 @@ class EventController extends Controller
         ] );
     }
 
-    public function edit(string $eventid)
+    public function edit(Event $event)
     {
-        $event = Event::find($eventid);
         return view('events.edit' , [
             'event' => $event
         ]);
@@ -103,7 +102,6 @@ class EventController extends Controller
         $event->eventName = $request->get('eventName');
         $event->budget = $request->get('budget');
         $event->detail = $request->get('detail');
-        $event->status = "PENDING";
         $event->size = $request->get('size');
         if(!$request->get('status') == null)
         {
@@ -116,7 +114,25 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events.show', ['eventid' => $event]);
+
+//        if(!$request->get('status') == null)
+//        {
+//            $newStatus = $request->get('status');
+//        }
+//        else
+//        {
+//            $newStatus = 'SHOW';
+//        }
+//
+//        $event->update([
+//            'eventName' => $request->get('eventName'),
+//            'budget' => $request->get('budget'),
+//            'detail' => $request->get('detail'),
+//            'size' => $request->get('size'),
+//            'status' => $newStatus
+//        ]);
+
+        return redirect()->route('events.show' , [ 'event' => $event ]);
     }
 
     public function join(Request $request, Event $event)

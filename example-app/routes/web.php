@@ -36,9 +36,9 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/myevents', [EventController::class, 'myevents'] )->name('events.myevents');
    Route::get('/events/create', [EventController::class, 'create'] )->name('events.create');
    Route::post('/events/store', [EventController::class, 'store'] )->name('events.store');
-   Route::get('/events/show/{eventid}', [EventController::class, 'show'] )->name('events.show');
-   Route::get('/events/edit/{eventid}', [EventController::class, 'edit'] )->name('events.edit');
-   Route::post('/events/update', [EventController::class, 'update'] )->name('events.update');
+   Route::get('/events/show/{event}', [EventController::class, 'show'] )->name('events.show');
+   Route::get('/events/edit/{event}', [EventController::class, 'edit'] )->name('events.edit');
+   Route::put('/events/update/{event}', [EventController::class, 'update'] )->name('events.update');
    Route::get('/events/pending', [EventController::class, 'pending'] )->name('events.pending');
    Route::get('/events/join', [EventController::class, 'join'] )->name('events.join');
 });

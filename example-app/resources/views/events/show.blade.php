@@ -29,7 +29,7 @@
             @else
                 <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                    href = "{{ route('events.edit', ['event' => $event]) }}">
-                    Event Approval
+                    Event Edit / Approval
                 </a>
             @endif
         </div>

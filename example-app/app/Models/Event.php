@@ -20,7 +20,7 @@ class Event extends Model
 
     public function users()
     {
-        return $this->BelongsToMany(User::class);
+        return $this->BelongsToMany(User::class)->withPivot('role');
     }
 
     public function processes(): HasMany

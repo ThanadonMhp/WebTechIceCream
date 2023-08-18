@@ -23,8 +23,11 @@ class EventController extends Controller
     public function myevents()
     {
         $user = Auth::user();
+        $participatedEvents = Event::whereHas('users', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->paginate();
         return view('events.index' , [
-                'events' =>  $user->events
+                'events' =>  $participatedEvents
             ]
         );
     }
@@ -108,16 +111,18 @@ class EventController extends Controller
         return redirect()->route('events.show', ['eventid' => $event]);
     }
 
-    public function approve(Event $event)
+    public function approve(string $eventid)
     {
+        $event = Event::find($eventid);
         $event->status = "SHOW";
         $event->save();
 
         return redirect()->route('events.index');
     }
 
-    public function decline(Event $event)
+    public function decline(string $eventid)
     {
+        $event = Event::find($eventid);
         $event->status = "HIDE";
         $event->save();
 

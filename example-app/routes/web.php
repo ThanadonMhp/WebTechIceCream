@@ -21,14 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/userprofile', function() {
-    return view('userProfile');
-});
-
-Route::get('/userparticipate' , function () {
-    return view('userParticipate');
-});
-
 Route::resource('/users', UserController::class);
 
 Route::controller(EventController::class)->group(function () {
@@ -45,12 +37,9 @@ Route::controller(EventController::class)->group(function () {
 
 Route::resource('/kanban', KanbanController::class);
 
-Route::get('/staffdashboard' , function () {
-    return view('staffDashboard');
-});
-
 Route::middleware(['auth'])->group(function () {
     Route::resource('/events' , EventController::class);
+    Route::resource('/users' , UserController::class);
 });
 
 //Route::get('/dashboard', function () {

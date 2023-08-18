@@ -82,9 +82,8 @@ class EventController extends Controller
         return redirect()->route('events.index');
     }
 
-    public function show(string $eventid)
+    public function show(Event $event)
     {
-        $event = Event::find($eventid);
         return view('events.show', [
             'event' => $event
         ] );
@@ -113,24 +112,6 @@ class EventController extends Controller
         }
 
         $event->save();
-
-
-//        if(!$request->get('status') == null)
-//        {
-//            $newStatus = $request->get('status');
-//        }
-//        else
-//        {
-//            $newStatus = 'SHOW';
-//        }
-//
-//        $event->update([
-//            'eventName' => $request->get('eventName'),
-//            'budget' => $request->get('budget'),
-//            'detail' => $request->get('detail'),
-//            'size' => $request->get('size'),
-//            'status' => $newStatus
-//        ]);
 
         return redirect()->route('events.show' , [ 'event' => $event ]);
     }

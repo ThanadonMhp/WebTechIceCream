@@ -22,7 +22,7 @@
 
     @else
 
-      <h1 class="text-4xl h-screen border-2 border-white bg-white rounded-lg flex items-center justify-center">No Active Event Now!</h1>
+      <h1 class="text-4xl h-screen border-2 border-white bg-white rounded-lg flex items-center justify-center">No Currently Active Event</h1>
 
     @endif
 

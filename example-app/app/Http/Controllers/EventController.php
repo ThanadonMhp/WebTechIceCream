@@ -12,7 +12,6 @@ class EventController extends Controller
 {
     public function index()
     {
-
         $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(5);
         return view('events.index' , [
             'events' => $events
@@ -84,6 +83,8 @@ class EventController extends Controller
 
     public function show(Event $event)
     {
+        $user = Auth::user();
+
         return view('events.show', [
             'event' => $event
         ] );

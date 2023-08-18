@@ -101,6 +101,19 @@ class EventController extends Controller
         return redirect()->route('events.show', ['eventid' => $event]);
     }
 
+    public function approve(Event $event)
+    {
+        $event->status = "SHOW";
+        $event->save();
 
+        return redirect()->route('events.index');
+    }
 
+    public function decline(Event $event)
+    {
+        $event->status = "HIDE";
+        $event->save();
+
+        return redirect()->route('events.index');
+    }
 }

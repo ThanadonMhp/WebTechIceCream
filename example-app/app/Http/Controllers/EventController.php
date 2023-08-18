@@ -101,13 +101,14 @@ class EventController extends Controller
         $event->budget = $request->get('budget');
         $event->detail = $request->get('detail');
         $event->size = $request->get('size');
-        if(!$request->get('status') == null)
+
+        if($request->get('status') == null)
         {
-            $event->status = $request->get('status');
+            $event->status = 'PENDING';
         }
         else
         {
-            $event->status = 'PENDING';
+            $event->status = $request->get('status');
         }
 
         $event->save();

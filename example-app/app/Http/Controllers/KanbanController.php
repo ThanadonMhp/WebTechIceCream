@@ -12,7 +12,10 @@ class KanbanController extends Controller
     {
         $kanbans = Process::all();
         return view('kanban.index', [
-            'kanbans' => $kanbans
+            'kanbans' => $kanbans,
+            'process_UPCOMING' => Process::where('status','UPCOMING')->get(),
+            'process_INPROCESS' => Process::where('status','INPROCESS')->get(),
+            'process_COMPLETED' => Process::where('status','COMPLETED')->get()
         ]);
     }
     public function create()
@@ -37,5 +40,32 @@ class KanbanController extends Controller
     // public function editPostIt(Request $request) {
     //     return $request->get('drop');
     // }
+
+    public function update(Request $request, Process $kanban) {
+
+        if($request->get('UPCOMING')) {
+            $kanban->status = 'UPCOMING'; 
+        }
+        else if($request->get('INPROCESS')) {
+            $kanban->status = 'INPROCESS'; 
+        }
+        else if($request->get('COMPLETED')) {
+            $kanban->status = 'COMPLETED'; 
+        }
+        // $kanban->name = $request->get('name'); 
+        $kanban->save();
+        return redirect()->back();
+
+        // แก้ให้มันเปลี่ยนสถานะผ่านไอดี
+        // $process = Process::find($request);
+        // echo $kanban->id;
+        // $process->status = "COMPLETED";
+        // return $process->save();
+    }  
+
+    public function destroy(Process $event) {
+        $event->delete();
+        return redirect()->route('kanban.index');
+    }
 
 }

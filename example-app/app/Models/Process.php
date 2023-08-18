@@ -11,9 +11,6 @@ use App\Models\Event;
 
 class Process extends Model
 {
-    protected $casts = [
-        'status' => ProcessStatus::class
-    ];
 
     use HasFactory, softDeletes;
 

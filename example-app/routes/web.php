@@ -57,4 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/postIt/update',[KanbanController::class, 'updatePostIt'])->name('postit.update');
+
 require __DIR__.'/auth.php';

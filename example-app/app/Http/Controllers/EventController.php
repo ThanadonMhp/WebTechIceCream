@@ -87,7 +87,6 @@ class EventController extends Controller
         $event->detail = $request->get('detail');
         $event->status = "PENDING";
         $event->size = $request->get('size');
-
         $event->save();
 
         return redirect()->route('events.show', ['eventid' => $event]);

@@ -37,7 +37,7 @@
                     <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">COMPLETED</button>                       
                   </form>
                 </div>
-            <form action="{{ route('kanban.destroy', ['kanban' => $kanban] )}}">
+            <form action="{{ route('kanban.destroy', ['kanban' => $kanban] )}}" method="POST">
               @csrf
               @method("DELETE")
               <button type="submit" class="inline-flex justify-center item-center text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">
@@ -87,7 +87,7 @@
                 <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">COMPLETED</button>                       
               </form>
             </div>
-            <form action="{{ route('kanban.destroy', ['kanban' => $kanban] )}}">
+            <form action="{{ route('kanban.destroy', ['kanban' => $kanban] )}}" method="POST">
               @csrf
               @method("DELETE")
               <button type="submit" class="inline-flex justify-center item-center text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">
@@ -134,7 +134,7 @@
               </form>
             </div>
 
-            <form action="{{ route('kanban.destroy', ['kanban' => $kanban] )}}">
+            <form action="{{ route('kanban.destroy', ['kanban' => $kanban] )}}" method="POST">
               @csrf
               @method("DELETE")
               <button type="submit" class="inline-flex justify-center item-center text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">

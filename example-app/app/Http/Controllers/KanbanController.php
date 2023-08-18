@@ -61,7 +61,10 @@ class KanbanController extends Controller
         // echo $kanban->id;
         // $process->status = "COMPLETED";
         // return $process->save();
-    }  
+    }
+    public function show(){
+        //
+    }
 
     public function destroy(Process $event) {
         $event->delete();

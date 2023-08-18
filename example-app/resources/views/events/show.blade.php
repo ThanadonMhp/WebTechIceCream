@@ -36,7 +36,7 @@
             @if(!Auth::user()->isAdmin())
                 <div class="flex flex-row-reverse py-5 w-2/3">
                     <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                       href = "{{ route('events.join', ['eventid' => $event]) }}">
+                       href = "{{ route('events.join', ['event' => $event]) }}">
                         Become Staff
                     </a>
                 </div>
@@ -45,14 +45,14 @@
                     <div class="flex flex-row-reverse w-full">
                         <div class="flex py-5 w-2/3">
                             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                               href = "{{ route('events.decline', ['eventid' => $event]) }}">
-                                Decline
+                               href = "{{ route('events.approve', ['eventid' => $event]) }}">
+                                Approve
                             </a>
                         </div>
                         <div class="flex py-5 w-2/3">
                             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                               href = "{{ route('events.approve', ['eventid' => $event]) }}">
-                                Approve
+                               href = "{{ route('events.decline', ['eventid' => $event]) }}">
+                                Decline
                             </a>
                         </div>
                     </div>

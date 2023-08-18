@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\User;
-use App\Models\UserEvent;
+use App\Models\Enums\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -13,7 +12,8 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::get();
+
+        $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(5);
         return view('events.index' , [
             'events' => $events
             ]
@@ -22,11 +22,24 @@ class EventController extends Controller
 
     public function myevents()
     {
-        $events = Event::get();
+        $user = Auth::user();
+        $participatedEvents = Event::whereHas('users', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->paginate();
         return view('events.index' , [
-                'events' => $events
+                'events' =>  $participatedEvents
             ]
         );
+    }
+
+    public function pending() {
+
+        $events = Event::where('status', 'like', EventStatus::PENDING)->paginate(5);
+
+        return view('events.index' , [
+            'events' =>  $events
+        ]
+    );
     }
 
     public function create()
@@ -40,6 +53,13 @@ class EventController extends Controller
     {
         $user = Auth::user();
 
+        $request->validate([
+            'eventName' => ['required', 'string', 'min:1'],
+            'budget' => ['required', 'integer', 'min:1'],
+            'detail' => ['required', 'string', 'min:1', 'max:255'],
+            'size' => ['required', 'integer', 'min:1'],
+        ]);
+
         $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
         $event_detail = $request->get('detail');
@@ -49,17 +69,15 @@ class EventController extends Controller
         $event->eventName = $event_name;
         $event->budget = $event_budget;
         $event->detail = $event_detail;
-        $event->status = "PENDING";
+        $event->status = EventStatus::PENDING;
         $event->size = $event_size;
 
         $event->save();
 
-        $userEvent = new UserEvent();
-        $userEvent->role = 'HOST';
-        $userEvent->event_id = $event->id;
-        $userEvent->user_id = $user->id;
+        $user->events()->attach($event->id, [
+            'role' => 'HOST'
+        ]);
 
-        $userEvent->save();
 
         return redirect()->route('events.index');
     }
@@ -87,11 +105,38 @@ class EventController extends Controller
         $event->detail = $request->get('detail');
         $event->status = "PENDING";
         $event->size = $request->get('size');
+
         $event->save();
 
         return redirect()->route('events.show', ['eventid' => $event]);
     }
 
+    public function approve(string $eventid)
+    {
+        $event = Event::find($eventid);
+        $event->status = "SHOW";
+        $event->save();
+
+        return redirect()->route('events.index');
+    }
+
+    public function decline(Event $event)
+    {
+        $event->status = "HIDE";
+        $event->save();
+
+        return redirect()->route('events.index');
+    }
+
+    public function join(Request $request, Event $event)
+    {
+        $user = Auth::user();
+
+        $user->events()->attach($event->id, [
+            'role' => 'HOST'
+        ]);
 
 
+        return redirect()->route('events.myevents');
+    }
 }

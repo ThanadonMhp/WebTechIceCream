@@ -41,7 +41,7 @@
             <select name="status" id="status">
                 <option value="PENDING">PENDING</option>
                 <option value="SHOW">APPROVE</option>
-                <option value="HIDE">HIDE</option>
+                <option value="HIDE">DELETE</option>
             </select>
             @endif
         </div>

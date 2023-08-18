@@ -105,27 +105,18 @@ class EventController extends Controller
         $event->detail = $request->get('detail');
         $event->status = "PENDING";
         $event->size = $request->get('size');
+        if(!$request->get('status') == null)
+        {
+            $event->status = $request->get('status');
+        }
+        else
+        {
+            $event->status = 'PENDING';
+        }
 
         $event->save();
 
         return redirect()->route('events.show', ['eventid' => $event]);
-    }
-
-    public function approve(string $eventid)
-    {
-        $event = Event::find($eventid);
-        $event->status = "SHOW";
-        $event->save();
-
-        return redirect()->route('events.index');
-    }
-
-    public function decline(Event $event)
-    {
-        $event->status = "HIDE";
-        $event->save();
-
-        return redirect()->route('events.index');
     }
 
     public function join(Request $request, Event $event)

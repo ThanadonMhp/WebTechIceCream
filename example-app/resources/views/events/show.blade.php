@@ -19,12 +19,19 @@
         </ul>
     </div>
     <div class="flex h4/5 p-2 py-10 w-11/12">
-        @if(Auth::user()->isHost($event->id))
+        @if(Auth::user()->isHost($event->id) or Auth::user()->isAdmin())
         <div class="flex py-5 w-2/3">
-            <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-               href = "{{ route('events.edit', ['eventid' => $event]) }}">
-                Edit
-            </a>
+            @if(!Auth::user()->isAdmin())
+                <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                   href = "{{ route('events.edit', ['eventid' => $event]) }}">
+                    Edit
+                </a>
+            @else
+                <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                   href = "{{ route('events.edit', ['eventid' => $event]) }}">
+                    Event Approval
+                </a>
+            @endif
         </div>
         <div class="flex py-5 w-2/3">
             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
@@ -40,23 +47,6 @@
                         Become Staff
                     </a>
                 </div>
-            @else
-                @if($event->status='PENDING')
-                    <div class="flex flex-row-reverse w-full">
-                        <div class="flex py-5 w-2/3">
-                            <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                               href = "{{ route('events.approve', ['eventid' => $event]) }}">
-                                Approve
-                            </a>
-                        </div>
-                        <div class="flex py-5 w-2/3">
-                            <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                               href = "{{ route('events.decline', ['eventid' => $event]) }}">
-                                Decline
-                            </a>
-                        </div>
-                    </div>
-                @endif
             @endif
         @endif
     </div>

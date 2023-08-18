@@ -39,8 +39,6 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/show/{eventid}', [EventController::class, 'show'] )->name('events.show');
    Route::get('/events/edit/{eventid}', [EventController::class, 'edit'] )->name('events.edit');
    Route::post('/events/update', [EventController::class, 'update'] )->name('events.update');
-   Route::post('/events/approve', [EventController::class, 'approve'] )->name('events.approve');
-   Route::post('/events/decline', [EventController::class, 'decline'] )->name('events.decline');
    Route::get('/events/pending', [EventController::class, 'pending'] )->name('events.pending');
    Route::get('/events/join', [EventController::class, 'join'] )->name('events.join');
 });

@@ -19,6 +19,7 @@
         </ul>
     </div>
     <div class="flex h4/5 p-2 py-10 w-11/12">
+        @if(Auth::user()->isHost($event->id))
         <div class="flex py-5 w-2/3">
             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                href = "{{ route('events.edit', ['eventid' => $event]) }}">
@@ -31,10 +32,12 @@
                 Kanban
             </a>
         </div>
+        @else
         <div class="flex flex-row-reverse py-5 w-2/3">
             <a class="bg-light-blue w-1/4 p-4 rounded-full text-center">
                 Become Staff
             </a>
         </div>
+        @endif
     </div>
 @endsection

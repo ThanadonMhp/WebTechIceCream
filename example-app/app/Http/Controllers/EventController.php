@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\User;
-use App\Models\UserEvent;
 use App\Models\Enums\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +21,12 @@ class EventController extends Controller
 
     public function myevents()
     {
-        $events = Event::get();
+        $user = Auth::user();
+        $user->events;
         return view('events.index' , [
-                'events' => $events
+                'events' =>  $user->events
             ]
         );
-
-        $event = UserEvent::get();
     }
 
     public function create()

@@ -49,5 +49,17 @@ class User extends Authenticatable
     public function events() : BelongsToMany {
         return $this->belongsToMany(Event::class)->withPivot('role');
     }
+
+    public function isHost(string $id)
+    {
+        if(!$this->events->where('id', $id)->isEmpty())
+        {
+            return $this->events->where('id', $id)->first()->pivot->role === 'HOST' ;
+        }
+    }
+
+    public function isAdmin() {
+        return $this->role === "ADMIN";
+    }
 }
 

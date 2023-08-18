@@ -12,18 +12,32 @@
                         <strong>Events</strong>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('events.myevents') }}"
-                       class="nav-menu {{ Route::currentRouteName() === 'events.myevents' ? 'active' : '' }}">
-                        <strong>My Events</strong>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('events.create') }}"
-                       class="nav-menu {{ Route::currentRouteName() === 'events.create' ? 'active' : '' }}">
-                        <strong>Create Event</strong>
-                    </a>
-                </li>
+
+                @if (Auth::check())
+                    @if (Auth::user()->isAdmin())
+                        <li>
+                            <a href="{{ route('events.pending') }}"
+                            class="nav-menu {{ Route::currentRouteName() === 'events.pending' ? 'active' : '' }}">
+                                <strong>Pending Events</strong>
+                            </a>
+                        </li>                        
+                    @else
+                        <li>
+                            <a href="{{ route('events.myevents') }}"
+                            class="nav-menu {{ Route::currentRouteName() === 'events.myevents' ? 'active' : '' }}">
+                                <strong>My Events</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('events.create') }}"
+                            class="nav-menu {{ Route::currentRouteName() === 'events.create' ? 'active' : '' }}">
+                                <strong>Create Event</strong>
+                            </a>
+                        </li>
+                    @endif
+                    
+                @endif
+                
             </ul>
         </div>
 

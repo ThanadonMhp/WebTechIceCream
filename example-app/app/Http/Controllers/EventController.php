@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\UserEvent;
+use App\Models\Enums\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -42,6 +43,13 @@ class EventController extends Controller
     {
         $user = Auth::user();
 
+        $request->validate([
+            'eventName' => ['required', 'string', 'min:1'],
+            'budget' => ['required', 'integer', 'min:1'],
+            'detail' => ['required', 'string', 'min:1', 'max:255'],
+            'size' => ['required', 'integer', 'min:1'],
+        ]);
+
         $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
         $event_detail = $request->get('detail');
@@ -51,17 +59,15 @@ class EventController extends Controller
         $event->eventName = $event_name;
         $event->budget = $event_budget;
         $event->detail = $event_detail;
-        $event->status = "PENDING";
+        $event->status = EventStatus::PENDING;
         $event->size = $event_size;
 
         $event->save();
 
-        $userEvent = new UserEvent();
-        $userEvent->role = 'HOST';
-        $userEvent->event_id = $event->id;
-        $userEvent->user_id = $user->id;
+        $user->events()->attach($event->id, [
+            'role' => 'HOST'
+        ]);
 
-        $userEvent->save();
 
         return redirect()->route('events.index');
     }

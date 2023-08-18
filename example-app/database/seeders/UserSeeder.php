@@ -23,13 +23,14 @@ class UserSeeder extends Seeder
         $user->year = fake()->numberBetween(1,8);
         $user->save();
 
+        $user = User::factory()->count(100)->create();
+
+
         $user = new User();
         $user->name = 'Admin';
         $user->email = 'admin@gmail.com';
         $user->password = Hash::make("password");
         $user->role = "ADMIN";
         $user->save();
-
-        $user = User::factory()->count(10)->create();
     }
 }

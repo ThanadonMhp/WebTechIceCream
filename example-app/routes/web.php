@@ -39,6 +39,9 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/show/{eventid}', [EventController::class, 'show'] )->name('events.show');
    Route::get('/events/edit/{eventid}', [EventController::class, 'edit'] )->name('events.edit');
    Route::post('/events/update', [EventController::class, 'update'] )->name('events.update');
+   Route::get('/events/approve', [EventController::class, 'approve'] )->name('events.approve');
+   Route::get('/events/decline', [EventController::class, 'decline'] )->name('events.decline');
+   Route::get('/events/pending', [EventController::class, 'pending'] )->name('events.pending');
 });
 
 Route::resource('/kanban', KanbanController::class);

@@ -16,14 +16,14 @@
                     Name :
                     <input required type="text" id="name"
                            name="name" value="{{ $user->name }}"
-                           autocomplete="off" placeholder="Put in new name"
+                           autocomplete="off" placeholder="Put in your name"
                            class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
                 </li>
                 <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
                     Email:
                     <input required type="text" id="email"
                            name="email" value="{{ $user->email }}"
-                           autocomplete="off" placeholder="Put in new email"
+                           autocomplete="off" placeholder="Put in your email"
                            class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
                 </li>
 
@@ -31,7 +31,7 @@
                     Certificate :
                     <input required type="text" id="certificate"
                            name="certificate" value="{{ $user->certificate }}"
-                           autocomplete="off" placeholder="Put in new certificate"
+                           autocomplete="off" placeholder="Put in your certificate"
                            class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
                 </li>
 
@@ -39,7 +39,7 @@
                     Old Year :
                     <input required type="text" id="year"
                            name="year" value="{{ $user->year }}"
-                           autocomplete="off" placeholder="Put in new year"
+                           autocomplete="off" placeholder="Put in year of education"
                            class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
                 </li>
 

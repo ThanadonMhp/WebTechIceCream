@@ -13,7 +13,7 @@
 
     @include('layouts.subviews.navbar')
 
-    <main class="bg-light-pink p-4 h-fit">
+    <main class="bg-light-pink p-4 h-full">
         @yield('content')
     </main>
 </body>

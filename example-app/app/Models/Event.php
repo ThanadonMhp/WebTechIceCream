@@ -28,5 +28,4 @@ class Event extends Model
         return $this->hasMany(Process::class);
     }
 
-
 }

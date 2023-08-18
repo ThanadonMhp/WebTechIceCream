@@ -29,6 +29,16 @@ class EventController extends Controller
         );
     }
 
+    public function pending() {
+
+        $events = Event::where('status', 'like', 'PENDING')->get();
+
+        return view('events.index' , [
+            'events' =>  $events
+        ]
+    );
+    }
+
     public function create()
     {
         Gate::authorize('create',Event::class);

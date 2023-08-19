@@ -23,4 +23,5 @@
                    href = "{{ route('users.edit', ['user' => $user]) }}">
                     Edit
                 </a>
+            </div>
 @endsection

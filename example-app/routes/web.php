@@ -38,13 +38,14 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/reject/{event}/{participant}', [EventController::class, 'reject'] )->name('events.reject');
 
    Route::get('/events/acceptEvent/{event}', [EventController::class, 'acceptEvent'] )->name('events.acceptEvent');
-   Route::get('/events/rejecttEvent/{event}', [EventController::class, 'rejectEvent'] )->name('events.rejectEvent');
+   Route::get('/events/rejectEvent/{event}', [EventController::class, 'rejectEvent'] )->name('events.rejectEvent');
 });
 
 Route::controller(ProcessController::class)->group(function () {
     Route::get('/processes/{event}', [ProcessController::class, 'index'])->name('processes.index');
-    Route::post('/processes/store/{event}', [EventController::class, 'store'] )->name('processes.store');
-    Route::put('/processes/update/{process}', [EventController::class, 'update'] )->name('processes.update');
+    Route::post('/processes/store/{event}', [ProcessController::class, 'store'] )->name('processes.store');
+    Route::put('/processes/update/{process}', [ProcessController::class, 'update'] )->name('processes.update');
+    Route::get('/processes/destroy/{process}/{event}', [ProcessController::class, 'destroy'] )->name('processes.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {

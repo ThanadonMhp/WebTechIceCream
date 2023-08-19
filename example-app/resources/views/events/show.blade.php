@@ -23,10 +23,24 @@
             <div class="flex py-5 w-2/3">
                 <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                 href = "{{ route('events.edit', ['event' => $event]) }}">
-                    Event Edit / Approval
+                    Event Edit
                 </a>
             </div>
-
+            @if($event->status === EventStatus::PENDING)
+                <div class="flex py-5 w-2/3">
+                    <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                    href = "{{ route('events.acceptEvent', ['event' => $event]) }}">
+                        <button><i class="fa-solid fa-check"></i></button>
+                    </a>
+                </div>
+                <div class="flex py-5 w-2/3">
+                    <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                    href = "{{ route('events.rejectEvent', ['event' => $event]) }}">
+                        <button><i class="fa-solid fa-xmark"></i></button>
+                    </a>
+                </div>
+            @endif
+            
         @else
             @if (Auth::user()->isHost($event->id) )
                 <div class="flex py-5 w-2/3">

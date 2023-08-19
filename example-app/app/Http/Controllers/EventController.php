@@ -14,7 +14,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(5);
-        return view('events.index' , [
+    return view('events.index' , [
             'events' => $events
             ]
         );
@@ -117,6 +117,27 @@ class EventController extends Controller
         return redirect()->route('events.show' , [ 'event' => $event ]);
     }
 
+    //change status of event from PENDING to SHOW
+    public function acceptEvent(Request $request, Event $event) {
+        $event->status = EventStatus::SHOW;
+        $event->save();
+
+        return redirect()->route('events.pending');
+
+    }
+
+    //delete the pending event
+    public function rejectEvent(Request $request, Event $event) {
+        $event->users()->detach();
+        $event->delete();
+
+        return redirect()->route('events.pending');
+    }
+
+    /*
+        user send request to join an event
+        it is in the event that user is not a host, participant, admin
+    */
     public function join(Request $request, Event $event)
     {
         $user = Auth::user();
@@ -129,6 +150,7 @@ class EventController extends Controller
 
     }
 
+    //show user request to become a participant
     public function approve(Event $event) {
 
         $users = User::whereHas('events', function ($query) use ($event) {
@@ -142,6 +164,7 @@ class EventController extends Controller
         );
     }
 
+    //accept requested user to be a participant
     public function accept(Request $request, Event $event, User $participant)
     {
         $user = Auth::user();
@@ -152,6 +175,10 @@ class EventController extends Controller
 
     }
 
+    /*
+     *  reject user request to become a participant
+     *  delete participant from event 
+     */
     public function reject(Request $request, Event $event, User $participant)
     {
         $user = Auth::user();

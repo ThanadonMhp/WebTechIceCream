@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignIdFor(Event::class);
             $table->foreignIdFor(User::class);
-            $table->enum('role', ['PARTICIPANT', 'HOST'])->default('PARTICIPANT')->comment('HOST or PARTICIPANT');
+            $table->enum('role', ['PARTICIPANT', 'HOST', 'REQUESTED'])->default('REQUESTED')->comment('HOST or PARTICIPANT or REQUESTED');
         });
     }
 

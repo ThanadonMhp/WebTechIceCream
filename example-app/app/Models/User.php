@@ -58,6 +58,14 @@ class User extends Authenticatable
         }
     }
 
+    public function isJoin(string $id) {
+        return !$this->events->where('id', $id)->isEmpty();
+    }
+
+    public function getRoleFromEvent(string $id) {
+        return $this->events->where('id', $id)->first()->pivot->role;
+    }
+
     public function isAdmin() {
         return $this->role === "ADMIN";
     }

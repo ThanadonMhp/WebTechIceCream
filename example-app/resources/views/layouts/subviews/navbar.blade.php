@@ -1,4 +1,4 @@
-<nav class="bg-light-purple border-gray-200 py-4 text-xl">
+<nav class="bg-light-purple border-gray-200 py-4 text-xl antialiased">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
         <a href="{{ url('/') }}">
             <img src="/images/ice-cream.png" class="h-6 mr-3 sm:h-9" alt="Logo">

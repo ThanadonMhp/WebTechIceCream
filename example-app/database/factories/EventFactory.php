@@ -16,11 +16,12 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
+        $status = array('SHOW', "PENDING");
         return [
             'eventName' => fake()->name(),
             'budget' => fake()->numberBetween(1,20000),
             'detail' => fake()->realTextBetween(10,20,5),
-            'status' => EventStatus::PENDING,
+            'status' => $status[array_rand($status)],
             'size' => fake()->numberBetween(1,50),
         ];
     }

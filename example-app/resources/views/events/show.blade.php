@@ -42,7 +42,7 @@
             @else
                 <div class="flex py-5 w-2/3">
                     <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                    href = "{{ route('events.rejectEvent', ['event' => $event]) }}">
+                    href = "{{ route('events.endEvent', ['event' => $event]) }}">
                         END
                     </a>
                 </div>
@@ -66,12 +66,15 @@
                 </div>
             @else
                 @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
-                    <div class="flex py-5 w-2/3">
-                        <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                        href = "{{ route('processes.index', ['event' => $event]) }}">
-                            Kanban
-                        </a>
-                    </div>
+                    @if ($event->status !== App\Models\Enums\EventStatus::END)
+                        
+                        <div class="flex py-5 w-2/3">
+                            <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                            href = "{{ route('processes.index', ['event' => $event]) }}">
+                                Kanban
+                            </a>
+                        </div>
+                    @endif
                     <div class="flex py-5 w-2/3">
                         <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                             href = "{{ route('events.approve', ['event' => $event]) }}">

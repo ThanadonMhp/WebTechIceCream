@@ -26,7 +26,7 @@
                     Event Edit
                 </a>
             </div>
-            @if($event->status === EventStatus::PENDING)
+            @if($event->status === App\Models\Enums\EventStatus::PENDING)
                 <div class="flex py-5 w-2/3">
                     <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                     href = "{{ route('events.acceptEvent', ['event' => $event]) }}">

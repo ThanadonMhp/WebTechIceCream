@@ -7,14 +7,16 @@
       @foreach ($events as $event)
       <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg hover:bg-light-purple">
           <div class="flex-1">
-                <a href="{{ route('events.show', ['event' => $event]) }}">
-                  <p class=""><strong>Event Name</strong> : {{ $event->eventName }}</p>
-                  <ul>
-                      <li class="text-xl font-medium px-12">Details : {{ $event->detail }}</li>
-                  </ul>
-                  @if (Auth::user()->isJoin($event->id))
-                      <p>{{ Auth::user()->getRoleFromEvent($event->id) }}</p>
-                  @endif
+                <a class="flex flex-row justify-between" href="{{ route('events.show', ['event' => $event]) }}">
+                    <div>
+                        <p class=""><strong>Event Name</strong> : {{ $event->eventName }}</p>
+                        <ul>
+                            <li class="text-xl font-medium px-12">Details : {{ $event->detail }}</li>
+                        </ul>
+                    </div>
+                    @if (Auth::user()->isJoin($event->id))
+                        <p class="text-xl">{{ Auth::user()->getRoleFromEvent($event->id) }}:{{ $event->status }}</p>
+                    @endif
               </a>
 
           </div>

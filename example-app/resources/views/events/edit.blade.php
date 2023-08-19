@@ -37,13 +37,6 @@
                    name="budget" value="{{ $event->budget }}"
                    autocomplete="off" placeholder="Put in event budget"
                    class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
-            @if(Auth::user()->isAdmin())
-            <select name="status" id="status">
-                <option value="PENDING">PENDING</option>
-                <option value="SHOW">APPROVE</option>
-                <option value="HIDE">DELETE</option>
-            </select>
-            @endif
         </div>
         <div class="flex flex-row-reverse py-5 w-2/3">
             <button type="submit" class="bg-light-blue w-1/4 p-4 rounded-full">Submit</button>

@@ -36,9 +36,9 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/approve/{event}', [EventController::class, 'approve'] )->name('events.approve');
    Route::get('/events/accept/{event}/{participant}', [EventController::class, 'accept'] )->name('events.accept');
    Route::get('/events/reject/{event}/{participant}', [EventController::class, 'reject'] )->name('events.reject');
-
    Route::get('/events/acceptEvent/{event}', [EventController::class, 'acceptEvent'] )->name('events.acceptEvent');
    Route::get('/events/rejecttEvent/{event}', [EventController::class, 'rejectEvent'] )->name('events.rejectEvent');
+   Route::get('/events/endEvent/{event}', [EventController::class, 'endEvent'] )->name('events.endEvent');
 });
 
 Route::controller(ProcessController::class)->group(function () {

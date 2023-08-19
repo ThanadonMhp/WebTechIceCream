@@ -43,7 +43,7 @@ Route::controller(EventController::class)->group(function () {
 
 Route::controller(ProcessController::class)->group(function () {
     Route::get('/processes/{event}', [ProcessController::class, 'index'])->name('processes.index');
-    Route::post('/processes/store', [EventController::class, 'store'] )->name('processes.store');
+    Route::post('/processes/store/{event}', [EventController::class, 'store'] )->name('processes.store');
     Route::put('/processes/update/{process}', [EventController::class, 'update'] )->name('processes.update');
 });
 

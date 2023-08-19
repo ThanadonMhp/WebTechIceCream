@@ -45,7 +45,9 @@
 
             </ul>
             <div class="flex flex-row-reverse">
-                <button type="submit "class="bg-light-blue w-1/4 p-4 rounded-full">Submit</button>
+                <button type="submit "class="bg-light-blue w-1/4 p-4 rounded-full">
+                    Submit
+                </button>
             </div>
         </div>
     </div>

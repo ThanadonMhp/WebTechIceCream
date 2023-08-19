@@ -11,20 +11,25 @@ class ProcessController extends Controller
     public function index(Event $event)
     {
         return view('processes.index' ,[
-            'processes' => $event->processes()->get()
+            'processes' => $event->processes()->get(),
+            'event' => $event
         ]);
     }
 
-    public function store(Request $request, Event $event){
+    public function store(Request $request, Event $event)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'min:1'],
+        ]);
 
         $process = new Process();
         $process->name = $request->get('postIt');
-        $process->status = "UPCOMING";
         $process->event_id = $event->id;
         $process->save();
 
-        return redirect()->route('processes.index' ,[
-            'processes' => $event->processes()->get()
+        return view('processes.index' ,[
+            'processes' => $event->processes()->get(),
+            'event' => $event
         ]);
     }
 

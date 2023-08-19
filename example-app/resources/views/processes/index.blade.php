@@ -30,14 +30,14 @@
               <div class="p-2 rounded shadow-sm border-gray-100 border-2" id="{{$process->id}}">
                   <h3 class="text-sm mb-3 text-gray-700"></h3>
                   <div class="flex w-9/12">
-                      <form action="{{ route('processes.update', ['process' => $process]) }}" method="POST">
+                      <form id = "update" action="{{ route('processes.update', ['process' => $process]) }}" method="POST">
                           @csrf
                           @method('PUT')
                           <button type="submit" name="INPROCESS" value="INPROCESS" class="text-black bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">INPROCESS</button>
                           <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">COMPLETED</button>
                       </form>
                   </div>
-                  <form action="{{ route('process.destroy', ['process' => $process] )}}" method="POST">
+                  <form id = "delete" action="{{ route('process.destroy', ['process' => $process] )}}" method="POST">
                       @csrf
                       @method("DELETE")
                       <button type="submit" class="inline-flex justify-center item-center text-gray-500 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-100">
@@ -55,13 +55,21 @@
       </div>
         <div class="flex flex-col items-center text-gray-300 mt-2 px-1">
             <div class="flex gap-3">
-                <form action="{{ route('processes.store') }}" method="POST">
+                <form id = "store" action="{{ route('processes.store', ['event' => $event]) }}" method="POST">
                     @csrf
                     <div>
-                        <input type="text" id="postIt" name="postIt" placeholder="Write something" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "></input>
+                        @error('name')
+                        <div class="text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                        <input type="text" id="postIt" name="postIt" autocomplete="off" placeholder="Write your process" value="test"
+                               class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        </input>
                     </div>
-
-                    <button id="kanban_event_button" type="submit" class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg mt-5">Submit</button>
+                    <button type="submit" class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg mt-5">
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>

@@ -13,6 +13,6 @@ class ProcessSeeder extends Seeder
      */
     public function run(): void
     {
-        $process = Process::factory()->count(40)->create();
+        $process = Process::factory()->count(20)->create();
     }
 }

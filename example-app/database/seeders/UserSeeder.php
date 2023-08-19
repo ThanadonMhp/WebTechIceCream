@@ -23,7 +23,15 @@ class UserSeeder extends Seeder
         $user->year = fake()->numberBetween(1,8);
         $user->save();
 
-        $user = User::factory()->count(100)->create();
+        $user = new User();
+        $user->name = 'Test_Account02';
+        $user->email = 'test02@gmail.com';
+        $user->password = Hash::make("password");
+        $user->certificate = fake()->realTextBetween(10, 20, 5);
+        $user->year = fake()->numberBetween(1,8);
+        $user->save();
+
+        $user = User::factory()->count(50)->create();
 
 
         $user = new User();

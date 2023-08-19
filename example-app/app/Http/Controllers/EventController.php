@@ -141,13 +141,12 @@ class EventController extends Controller
     public function join(Request $request, Event $event)
     {
         $user = Auth::user();
-        
+
         $user->events()->attach($event, [
             'role' => 'REQUESTED'
         ]);
 
         return redirect()->route('events.myevents')->with('success', 'Request to join successfully');
-
     }
 
     //show user request to become a participant
@@ -177,7 +176,7 @@ class EventController extends Controller
 
     /*
      *  reject user request to become a participant
-     *  delete participant from event 
+     *  delete participant from event
      */
     public function reject(Request $request, Event $event, User $participant)
     {

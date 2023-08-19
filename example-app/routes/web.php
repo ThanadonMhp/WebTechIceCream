@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\KanbanController;
+use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -36,15 +36,21 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/approve/{event}', [EventController::class, 'approve'] )->name('events.approve');
    Route::get('/events/accept/{event}/{participant}', [EventController::class, 'accept'] )->name('events.accept');
    Route::get('/events/reject/{event}/{participant}', [EventController::class, 'reject'] )->name('events.reject');
+
    Route::get('/events/acceptEvent/{event}', [EventController::class, 'acceptEvent'] )->name('events.acceptEvent');
    Route::get('/events/rejecttEvent/{event}', [EventController::class, 'rejectEvent'] )->name('events.rejectEvent');
 });
 
-Route::resource('/kanban', KanbanController::class);
+Route::controller(ProcessController::class)->group(function () {
+    Route::get('/processes/{event}', [ProcessController::class, 'index'])->name('processes.index');
+    Route::post('/processes/store', [EventController::class, 'store'] )->name('processes.store');
+    Route::put('/processes/update/{process}', [EventController::class, 'update'] )->name('processes.update');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/events' , EventController::class);
     Route::resource('/users' , UserController::class);
+    Route::resource('/process', ProcessController::class);
 });
 
 //Route::get('/dashboard', function () {
@@ -57,6 +63,6 @@ Route::middleware(['auth'])->group(function () {
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //});
 
-Route::post('/postIt/update',[KanbanController::class, 'updatePostIt'])->name('postit.update');
+Route::post('/postIt/update',[ProcessController::class, 'updatePostIt'])->name('postit.update');
 
 require __DIR__.'/auth.php';

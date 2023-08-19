@@ -8,38 +8,25 @@ use Illuminate\Http\Request;
 
 class ProcessController extends Controller
 {
-    public function index()
+    public function index(Event $event)
     {
-        $kanbans = Process::all();
-        return view('kanban.index', [
-            'kanbans' => $kanbans,
-            'process_UPCOMING' => Process::where('status','UPCOMING')->get(),
-            'process_INPROCESS' => Process::where('status','INPROCESS')->get(),
-            'process_COMPLETED' => Process::where('status','COMPLETED')->get()
+        return view('processes.index' ,[
+            'processes' => $event->processes()->get()
         ]);
-    }
-    public function create()
-    {
-        return view('kanban.create');
     }
 
     public function store(Request $request, Event $event){
+
         $process = new Process();
         $process->name = $request->get('postIt');
         $process->status = "UPCOMING";
         $process->event_id = $event->id;
         $process->save();
 
-        return redirect()->route('kanban.index', ['event' => $event]);
+        return redirect()->route('processes.index' ,[
+            'processes' => $event->processes()->get()
+        ]);
     }
-
-    // public function store(Request $request) {
-    //     return "asdas";
-    // }
-
-    // public function editPostIt(Request $request) {
-    //     return $request->get('drop');
-    // }
 
     public function update(Request $request, Process $kanban) {
 
@@ -61,9 +48,6 @@ class ProcessController extends Controller
         // echo $kanban->id;
         // $process->status = "COMPLETED";
         // return $process->save();
-    }
-    public function show(){
-        //
     }
 
     public function destroy(Process $event) {

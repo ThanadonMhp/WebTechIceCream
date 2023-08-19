@@ -40,7 +40,7 @@
                     </a>
                 </div>
             @endif
-            
+
         @else
             @if (Auth::user()->isHost($event->id) )
                 <div class="flex py-5 w-2/3">
@@ -61,7 +61,7 @@
                 @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
                     <div class="flex py-5 w-2/3">
                         <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                        href = "{{ route('kanban.index', ['eventid' => $event]) }}">
+                        href = "{{ route('processes.index', ['event' => $event]) }}">
                             Kanban
                         </a>
                     </div>
@@ -73,8 +73,8 @@
                     </div>
                 @endif
             @endif
-            
-            
+
+
         @endif
     </div>
 

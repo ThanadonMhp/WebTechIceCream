@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                     @if (Auth::user()->isJoin($event->id))
-                        <p class="text-xl">{{ Auth::user()->getRoleFromEvent($event->id) }}:{{ $event->status }}</p>
+                        <p class="text-xl">{{ Auth::user()->getRoleFromEvent($event->id) }}</p>
                     @endif
               </a>
 

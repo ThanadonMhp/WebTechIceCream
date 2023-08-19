@@ -9,7 +9,7 @@
         </div>
         <div class="w-1/4">
             <p>Number of Staffs</p>
-            <p class="">{{ $event->size }}</p>
+            <p class="">{{ $event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() }}/{{ $event->size }}</p>
         </div>
     </div>
     <div class="p-6 text-xl bg-white h-96 w-11/12 rounded-lg">

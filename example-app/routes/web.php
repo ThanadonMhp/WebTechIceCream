@@ -39,6 +39,7 @@ Route::controller(EventController::class)->group(function () {
 
    Route::get('/events/acceptEvent/{event}', [EventController::class, 'acceptEvent'] )->name('events.acceptEvent');
    Route::get('/events/rejectEvent/{event}', [EventController::class, 'rejectEvent'] )->name('events.rejectEvent');
+   Route::get('/events/endEvent/{event}', [EventController::class, 'endEvent'] )->name('events.endEvent');
 });
 
 Route::controller(ProcessController::class)->group(function () {

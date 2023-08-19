@@ -40,7 +40,7 @@
             </a>
         </div>
         @else
-            @if(!Auth::user()->isAdmin())
+            @if(!Auth::user()->isAdmin() and !Auth::user()->isJoin($event->id))
                 <div class="flex flex-row-reverse py-5 w-2/3">
                     <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                        href = "{{ route('events.join', ['event' => $event]) }}">
@@ -50,4 +50,8 @@
             @endif
         @endif
     </div>
+    <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                   href = "{{ route('events.approve', ['event' => $event]) }}">
+                    Approve
+                </a>
 @endsection

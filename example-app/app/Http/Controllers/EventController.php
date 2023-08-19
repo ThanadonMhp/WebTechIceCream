@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Enums\EventStatus;
 use Illuminate\Http\Request;
@@ -118,12 +119,26 @@ class EventController extends Controller
     public function join(Request $request, Event $event)
     {
         $user = Auth::user();
-
-        $user->events()->attach($event->id, [
-            'role' => 'HOST'
+        
+        $user->events()->attach($event, [
+            'role' => 'REQUESTED'
         ]);
 
+        return redirect()->route('events.myevents')->with('success', 'Request to join successfully');
 
-        return redirect()->route('events.myevents');
+    }
+
+    public function approve(Event $event) {
+
+        $users = User::whereHas('events', function ($query) use ($event) {
+            $query->where('event_id', $event->id);
+        })->paginate(5);
+
+        // return $users;
+        return view('events.approve' , [
+                'users' => $users,
+                'event' => $event
+            ]
+        );
     }
 }

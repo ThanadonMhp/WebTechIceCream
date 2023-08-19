@@ -6,7 +6,7 @@ use App\Models\Event;
 use App\Models\Process;
 use Illuminate\Http\Request;
 
-class KanbanController extends Controller
+class ProcessController extends Controller
 {
     public function index()
     {
@@ -27,7 +27,7 @@ class KanbanController extends Controller
         $process = new Process();
         $process->name = $request->get('postIt');
         $process->status = "UPCOMING";
-        $process->event_id = 1;
+        $process->event_id = $event->id;
         $process->save();
 
         return redirect()->route('kanban.index', ['event' => $event]);
@@ -44,15 +44,15 @@ class KanbanController extends Controller
     public function update(Request $request, Process $kanban) {
 
         if($request->get('UPCOMING')) {
-            $kanban->status = 'UPCOMING'; 
+            $kanban->status = 'UPCOMING';
         }
         else if($request->get('INPROCESS')) {
-            $kanban->status = 'INPROCESS'; 
+            $kanban->status = 'INPROCESS';
         }
         else if($request->get('COMPLETED')) {
-            $kanban->status = 'COMPLETED'; 
+            $kanban->status = 'COMPLETED';
         }
-        // $kanban->name = $request->get('name'); 
+        // $kanban->name = $request->get('name');
         $kanban->save();
         return redirect()->back();
 
@@ -68,7 +68,7 @@ class KanbanController extends Controller
 
     public function destroy(Process $event) {
         $event->delete();
-        return redirect()->route('kanban.index');
+        return redirect()->back();
     }
 
 }

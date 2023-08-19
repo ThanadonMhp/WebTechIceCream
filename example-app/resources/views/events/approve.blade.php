@@ -12,6 +12,8 @@
                         <ul>
                             <li>{{ $user->getRoleFromEvent($event->id) }}</li>
                         </ul>
+                        <button><i class="fa-solid fa-check"></i></button>
+                        <button><i class="fa-solid fa-xmark"></i></button>
                     </a>
 
                 </div>

@@ -135,11 +135,30 @@ class EventController extends Controller
             $query->where('event_id', $event->id);
         })->paginate(5);
 
-        // return $users;
         return view('events.approve' , [
                 'users' => $users,
                 'event' => $event
             ]
         );
+    }
+
+    public function accept(Request $request, Event $event, User $participant)
+    {
+        $user = Auth::user();
+
+        $participant->events()->updateExistingPivot($event, ['role' => 'PARTICIPANT']);
+
+        return redirect()->route('events.approve', ['event' => $event])->with('success', 'Accept request successfully');
+
+    }
+
+    public function reject(Request $request, Event $event, User $participant)
+    {
+        $user = Auth::user();
+
+        $participant->events()->detach($event);
+
+        return redirect()->route('events.approve', ['event' => $event])->with('success', 'Reject successfully');
+
     }
 }

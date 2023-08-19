@@ -34,6 +34,9 @@ Route::controller(EventController::class)->group(function () {
    Route::get('/events/pending', [EventController::class, 'pending'] )->name('events.pending');
    Route::get('/events/join/{event}', [EventController::class, 'join'] )->name('events.join');
    Route::get('/events/approve/{event}', [EventController::class, 'approve'] )->name('events.approve');
+   Route::get('/events/accept/{event}/{participant}', [EventController::class, 'accept'] )->name('events.accept');
+   Route::get('/events/reject/{event}/{participant}', [EventController::class, 'reject'] )->name('events.reject');
+   
 });
 
 Route::resource('/kanban', KanbanController::class);

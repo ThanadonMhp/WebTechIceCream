@@ -19,39 +19,49 @@
         </ul>
     </div>
     <div class="flex h4/5 p-2 py-10 w-11/12">
-        @if(Auth::user()->isHost($event->id) or Auth::user()->isAdmin())
-        <div class="flex py-5 w-2/3">
-            @if(!Auth::user()->isAdmin())
+        @if(Auth::user()->isAdmin())
+            <div class="flex py-5 w-2/3">
                 <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                   href = "{{ route('events.edit', ['event' => $event]) }}">
-                    Edit
-                </a>
-            @else
-                <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                   href = "{{ route('events.edit', ['event' => $event]) }}">
+                href = "{{ route('events.edit', ['event' => $event]) }}">
                     Event Edit / Approval
                 </a>
-            @endif
-        </div>
-        <div class="flex py-5 w-2/3">
-            <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-               href = "{{ route('kanban.index', ['eventid' => $event]) }}">
-                Kanban
-            </a>
-        </div>
+            </div>
+
         @else
-            @if(!Auth::user()->isAdmin() and !Auth::user()->isJoin($event->id))
+            @if (Auth::user()->isHost($event->id) )
+                <div class="flex py-5 w-2/3">
+                    <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                        href = "{{ route('events.edit', ['event' => $event]) }}">
+                            Edit
+                    </a>
+                </div>
+            @endif
+            @if(!Auth::user()->isJoin($event->id))
                 <div class="flex flex-row-reverse py-5 w-2/3">
                     <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                        href = "{{ route('events.join', ['event' => $event]) }}">
                         Become Staff
                     </a>
                 </div>
+            @else
+                @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
+                    <div class="flex py-5 w-2/3">
+                        <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                        href = "{{ route('kanban.index', ['eventid' => $event]) }}">
+                            Kanban
+                        </a>
+                    </div>
+                    <div class="flex py-5 w-2/3">
+                        <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                            href = "{{ route('events.approve', ['event' => $event]) }}">
+                                Member
+                        </a>
+                    </div>
+                @endif
             @endif
+            
+            
         @endif
     </div>
-    <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                   href = "{{ route('events.approve', ['event' => $event]) }}">
-                    Approve
-                </a>
+
 @endsection

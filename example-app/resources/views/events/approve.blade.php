@@ -12,9 +12,19 @@
                         <ul>
                             <li>{{ $user->getRoleFromEvent($event->id) }}</li>
                         </ul>
-                        <button><i class="fa-solid fa-check"></i></button>
-                        <button><i class="fa-solid fa-xmark"></i></button>
-                    </a>
+                        @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
+                            <a href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
+                                <button><i class="fa-solid fa-check"></i></button>
+                            </a>
+                            <a href="">
+                                <button><i class="fa-solid fa-xmark"></i></button>
+                            </a>
+                        @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
+                            <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                <button><i class="fa-solid fa-xmark"></i></button>
+                            </a>
+                        @endif
+                        
 
                 </div>
             </div>

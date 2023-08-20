@@ -178,7 +178,7 @@ class EventController extends Controller
 
         $participant->events()->updateExistingPivot($event, ['role' => 'PARTICIPANT']);
 
-        return redirect()->route('events.approve', ['event' => $event])->with('success', 'Accept request successfully');
+        return redirect()->route('events.show', ['event' => $event])->with('success', 'Accept request successfully');
 
     }
 
@@ -192,7 +192,7 @@ class EventController extends Controller
 
         $participant->events()->detach($event);
 
-        return redirect()->route('events.approve', ['event' => $event])->with('success', 'Reject successfully');
+        return redirect()->route('events.show', ['event' => $event])->with('success', 'Reject successfully');
 
     }
 }

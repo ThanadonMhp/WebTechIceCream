@@ -9,7 +9,7 @@
         </div>
         <div class="w-1/4">
             <p>Number of Staffs</p>
-            <p class="">{{ $event->size }}</p>
+            <p class="">{{ $event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() }}/{{ $event->size }}</p>
         </div>
     </div>
     <div class="p-6 text-xl bg-white h-96 w-11/12 rounded-lg">
@@ -58,12 +58,14 @@
                 </div>
             @endif
             @if(!Auth::user()->isJoin($event->id))
-                <div class="flex flex-row-reverse py-5 w-2/3">
-                    <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
-                       href = "{{ route('events.join', ['event' => $event]) }}">
-                        Become Staff
-                    </a>
-                </div>
+                @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() < $event->size)
+                    <div class="flex flex-row-reverse py-5 w-2/3">
+                        <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                        href = "{{ route('events.join', ['event' => $event]) }}">
+                            Become Staff
+                        </a>
+                    </div>
+                @endif
             @else
                 @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
                     @if ($event->status !== App\Models\Enums\EventStatus::END)

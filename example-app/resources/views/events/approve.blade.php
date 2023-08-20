@@ -12,12 +12,22 @@
                         <ul>
                             <li>{{ $user->getRoleFromEvent($event->id) }}</li>
                         </ul>
-                        @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() <= $event->size)    
+                        @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() < $event->size)    
                             @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
                                 <a href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
                                     <button><i class="fa-solid fa-check"></i></button>
                                 </a>
-                                <a href="">
+                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
+                                    <button><i class="fa-solid fa-xmark"></i></button>
+                                </a>
+                            @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
+                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                    <button><i class="fa-solid fa-xmark"></i></button>
+                                </a>
+                            @endif
+                        @else
+                            @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
+                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
                                     <button><i class="fa-solid fa-xmark"></i></button>
                                 </a>
                             @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')

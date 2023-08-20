@@ -5,7 +5,7 @@ Group Member<br />
 &nbsp;6410450974 ธนดล กฤตวีรนันท์<br />
 &nbsp;6410450982 ธนดล มหาพรรณ<br />
 <br />
-First time setup : make
+First time setup command : make<br />
 <br />
 To start web please open docker and run these command<br />
 &nbsp;sail up -d<br />

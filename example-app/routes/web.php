@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,10 @@ Route::controller(ProcessController::class)->group(function () {
     Route::post('/processes/store/{event}', [ProcessController::class, 'store'] )->name('processes.store');
     Route::put('/processes/update/{process}', [ProcessController::class, 'update'] )->name('processes.update');
     Route::get('/processes/destroy/{process}/{event}', [ProcessController::class, 'destroy'] )->name('processes.destroy');
+});
+
+Route::controller(ImageController::class)->group(function () {
+    Route::post('/upload-image', [ImageController::class, 'upload'])->name('upload.image');
 });
 
 Route::middleware(['auth'])->group(function () {

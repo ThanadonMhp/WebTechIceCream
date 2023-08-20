@@ -21,9 +21,14 @@ class ImageController extends Controller
         $user = Auth::user();
 
         //check old picture and delete if it is not default picture
-        if($user->imgPath !== 'images/default.jpeg' and Storage::disk('public')->exists($user->imgPath)) {
+        if($user->imgPath != null)
+        {
+            if(Storage::disk('public')->exists($user->imgPath))
+            {
                 Storage::disk('public')->delete($user->imgPath);
+            }
         }
+
         $user->imgPath = $imagePath;
         $user->save();
 

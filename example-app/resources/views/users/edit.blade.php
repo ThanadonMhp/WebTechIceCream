@@ -7,7 +7,11 @@
     <h1 class="text-4xl mb-6 py-3 pl-12"><strong>Profile</strong></h1>
     <div class="flex justify-between p-6 text-xl bg-white rounded-lg">
         <div class="w-1/2 pr-4 flex flex-col items-center">
-            <img src="{{ asset('storage/' . $user->imgPath) }}" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
+            @if(!$user->imgPath === null)
+                <img src="{{ asset('storage/' . $user->imgPath) }}" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
+            @else
+                <img src="/images/defaultProfile.jpeg" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
+            @endif
             <p class="mt-2"><strong>UID</strong>: {{ $user->id }}</p>
         </div>
         <div class="w-1/2">

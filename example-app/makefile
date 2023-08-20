@@ -11,6 +11,5 @@ build:
 	@./vendor/bin/sail up -d
 	@./vendor/bin/sail artisan key:generate
 	@./vendor/bin/sail yarn install
-	@./vendor/bin/sail artisan migrate:fresh --seed
 	@./vendor/bin/sail artisan storage:link
 	@./vendor/bin/sail yarn dev

@@ -1,18 +1,26 @@
 @extends('layouts.main')
 @section('content')
 <div class="min-h-screen">
-    <div class="typewriter">
-        <h1 class="text-center text-4xl mb-6  pl-12">
-            Welcome to IceCream group event web page.
-        </h1>
+    <div class="bg-white flex flex-wrap p-5 mb-5">
+        <div class="typewriter text-center w-1/2 flex flex-col justify-center">
+            <h1 class="text-4xl">
+                <strong>IceCream group web page.</strong>
+            </h1>
+            <h1 class="text-center text-2xl mt-6">
+                create or become a part of the event.
+            </h1>
+        </div>
+        <div class="1/2">
+            <img src="/images/icecream-welcome.jpeg" alt="icecream-picture" class="object-contain">
+        </div>
     </div>
-    <div class="grid grid-cols-8">
-        <h2 class="col-start-3 text-center text-2xl mb-6 py-3 pl-12">
-            Group member
+    <div class="grid grid-cols-8 ">
+        <h2 class="col-start-4 col-end-6 text-center text-4xl mb-6 py-8 pl-12">
+            <strong>Group members</strong>
         </h2>
     </div>
 
-    <div class="flex w-full mb-5 sm:flex-row justify-center">
+    <div class="flex w-full mb-5 p-2 sm:flex-row justify-center">
             <div class="">
                 <div class="relative h-full ml-0 mr-0 sm:mr-10">
                     <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg"></span>

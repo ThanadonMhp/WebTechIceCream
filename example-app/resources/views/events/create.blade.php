@@ -5,7 +5,7 @@
     @csrf
 
     <div class="grid grid-cols-8 p-5">
-        <h3 class="text-xl font-semibold">
+        <h3 class="text-3xl font-semibold">
             Event Detail
         </h3>
     </div>

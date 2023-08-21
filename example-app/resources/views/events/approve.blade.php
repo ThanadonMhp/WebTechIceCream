@@ -6,6 +6,7 @@
     @if (!$users->isEmpty())
         @if (Auth::user()->isHost($event->id))
             @foreach ($users as $user)
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg hover:bg-light-purple">
                 <div class="flex-1">
                         <p class=""><strong>Name</strong> : {{ $user->name }}</p>
@@ -39,6 +40,7 @@
                         
 
                 </div>
+            </div>
             </div>
             @endforeach
         @else

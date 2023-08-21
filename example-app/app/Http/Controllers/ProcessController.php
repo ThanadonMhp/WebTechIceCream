@@ -50,12 +50,6 @@ class ProcessController extends Controller
             'processes' => $newEvent->processes()->get(),
             'event' => $newEvent
         ]);
-
-        // แก้ให้มันเปลี่ยนสถานะผ่านไอดี
-        // $process = Process::find($request);
-        // echo $kanban->id;
-        // $process->status = "COMPLETED";
-        // return $process->save();
     }
 
     public function destroy(Process $process, Event $event) {

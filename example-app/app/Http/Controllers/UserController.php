@@ -24,6 +24,13 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:1'],
+            'email' => ['required', 'string', 'min:1'],
+            'year' => ['required', 'integer', 'min:1','max:8'],
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+        ]);
+
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->year = $request->get('year');

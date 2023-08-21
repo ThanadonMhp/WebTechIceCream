@@ -11,15 +11,17 @@
             @endif
             <p class="mt-2"><strong>UID</strong>: {{ $user->id }}</p>
             @include('alert')
-            <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div>
-                    <input type="file" name="image" accept="image/*">
-                </div>
-                <div class="grid grid-cols-3">
-                <button type="submit" class="col-start-2 bg-light-blue w-full py-4 rounded-full text-center hover:bg-blue-400">Change</button>
-                </div>
-            </form>
+            @if (Auth::user()->id === $user->id)
+                <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div>
+                        <input type="file" name="image" accept="image/*">
+                    </div>
+                    <div class="grid grid-cols-3">
+                    <button type="submit" class="col-start-2 bg-light-blue w-full py-4 rounded-full text-center hover:bg-blue-400">Change</button>
+                    </div>
+                </form>
+            @endif
         </div>
         <div class="w-1/2" >
             <ul>
@@ -29,15 +31,18 @@
                     Email: {{ $user->email }}</li>
                 @if (!Auth::user()->isAdmin())
                     <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                        Certificate : {{ $user->certificate }}</li>
+                        Certificate : <a href=" {{ route('certificates.index', ['user' => $user]) }} " class="md:hover:text-blue-700">view my certificates</a> 
+                    </li>
                     <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
                         Year : {{ $user->year }}</li>
                 @endif
             </ul>
-            <div class="flex flex-row-reverse">
-                <a class="bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"
-                   href = "{{ route('users.edit', ['user' => $user]) }}">
-                    Edit
-                </a>
-            </div>
+            @if (Auth::user()->id === $user->id)
+                <div class="flex flex-row-reverse">
+                    <a class="bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"
+                    href = "{{ route('users.edit', ['user' => $user]) }}">
+                        Edit
+                    </a>
+                </div>
+            @endif
 @endsection

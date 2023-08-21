@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
         $user->name = 'Test_Account01';
         $user->email = 'test01@gmail.com';
         $user->password = Hash::make("password");
-        $user->certificate = fake()->realTextBetween(10, 20, 5);
         $user->year = fake()->numberBetween(1,8);
         $user->save();
 
@@ -27,7 +26,6 @@ class UserSeeder extends Seeder
         $user->name = 'Test_Account02';
         $user->email = 'test02@gmail.com';
         $user->password = Hash::make("password");
-        $user->certificate = fake()->realTextBetween(10, 20, 5);
         $user->year = fake()->numberBetween(1,8);
         $user->save();
 

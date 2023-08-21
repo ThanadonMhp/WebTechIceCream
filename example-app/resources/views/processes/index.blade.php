@@ -43,7 +43,7 @@
                           </form>
                       </div>
                       <div class="flex flex-row items-center">{{ $process->name }}</div>
-                      <a href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}}">
+                      <a class='md:hover:text-red-700' href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                           Delete
                       </a>
                   </div>
@@ -87,7 +87,7 @@
 <!--                          </button>-->
 <!--                      </form>-->
                       <div class="flex flex-row items-center">{{ $process->name }}</div>
-                      <a href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}}">
+                      <a class='md:hover:text-red-700' href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}}">
                           Delete
                       </a>
 
@@ -133,7 +133,7 @@
 <!--                          </button>-->
 <!--                      </form>-->
                       <div class="flex flex-row items-center">{{ $process->name }}</div>
-                      <a href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}}">
+                      <a class='md:hover:text-red-700' href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}}">
                           Delete
                       </a>
                   </div>

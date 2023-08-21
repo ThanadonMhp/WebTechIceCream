@@ -5,6 +5,7 @@ use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CertificateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/users', UserController::class);
+Route::controller(CertificateController::class)->group(function () {
+    Route::get('/certificates/{user}', [CertificateController::class, 'index'])->name('certificates.index');
+
+    Route::post('/certificates.store', [CertificateController::class, 'store'])->name('certificates.store');    
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users.show', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users.edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/users.update', [UserController::class, 'update'])->name('users.update');
+});
 
 Route::controller(EventController::class)->group(function () {
    Route::get('/events', [EventController::class, 'index'] )->name('events.index');

@@ -79,7 +79,7 @@ class EventController extends Controller
         ]);
 
 
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('success', 'Create an event successfully your status is "Pending"');
     }
 
     public function show(Event $event)
@@ -122,7 +122,7 @@ class EventController extends Controller
         $event->status = EventStatus::SHOW;
         $event->save();
 
-        return redirect()->route('events.pending')->with('success', 'Accept the event successfully');;
+        return redirect()->route('events.pending')->with('success', 'Accept the event successfully');
 
     }
 
@@ -131,7 +131,7 @@ class EventController extends Controller
         $event->users()->detach();
         $event->delete();
 
-        return redirect()->route('events.pending')->with('success', 'Reject event successfully');;
+        return redirect()->route('events.pending')->with('success', 'Reject event successfully');
     }
 
     //end event
@@ -139,7 +139,7 @@ class EventController extends Controller
         $event->status = EventStatus::END;
         $event->save();
 
-        return redirect()->route('events.index')->with('success', 'Ended an event successfully');;
+        return redirect()->route('events.index')->with('success', 'Ended an event successfully');
     }
 
     /*

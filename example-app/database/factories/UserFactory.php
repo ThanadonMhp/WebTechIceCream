@@ -23,7 +23,6 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'year' => fake()->numberBetween(1,8),
-            'certificate' => fake()->realTextBetween(10, 20, 5),
 
             'remember_token' => Str::random(10),
         ];

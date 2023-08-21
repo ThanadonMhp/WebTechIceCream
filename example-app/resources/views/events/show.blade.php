@@ -10,6 +10,8 @@
         </h3>
     </div>
 
+    @include('alert')
+
     <div class="bg-white border border-4 rounded-lg shadow relative mx-10">
 
     <div class="p-6 space-y-6">
@@ -76,7 +78,7 @@
                     <div class="flex flex-row-reverse py-5 w-2/3">
                         <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"
                         href = "{{ route('events.join', ['event' => $event]) }}">
-                            Become Staff
+                            Join Event
                         </a>
                     </div>
                 @endif

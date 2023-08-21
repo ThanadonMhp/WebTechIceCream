@@ -34,4 +34,8 @@ class UserController extends Controller
         return redirect()->route('users.show', ['user' => $user]);
     }
 
+    public function showCertificate(User $user) {
+        
+    }
+
 }

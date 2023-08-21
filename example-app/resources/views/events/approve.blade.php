@@ -9,36 +9,40 @@
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class=" justify-between mb-4 p-6 border-b-2 text-xl bg-white rounded-lg hover:bg-light-purple">
                 <div class="flex-1">
-                        <p class=""><strong>Name</strong> : {{ $user->name }}</p>
-                        <ul>
-                            <li>{{ $user->getRoleFromEvent($event->id) }}</li>
-                        </ul>
-                        @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() < $event->size)    
-                            @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
-                                <a href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
-                                    <button><i class="fa-solid fa-check"></i></button>
-                                </a>
-                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
-                                    <button><i class="fa-solid fa-xmark"></i></button>
-                                </a>
-                            @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
-                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
-                                    <button><i class="fa-solid fa-xmark"></i></button>
-                                </a>
+                    <a href="{{ route('users.show', ['user' => $user ]) }}">
+                        <div>
+                            <p class=""><strong>Name</strong> : {{ $user->name }}</p>
+                            <ul>
+                                <li>{{ $user->getRoleFromEvent($event->id) }}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() < $event->size)    
+                                @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
+                                    <a href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
+                                        <button><i class="fa-solid fa-check"></i></button>
+                                    </a>
+                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
+                                        <button><i class="fa-solid fa-xmark"></i></button>
+                                    </a>
+                                @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
+                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                        <button><i class="fa-solid fa-xmark"></i></button>
+                                    </a>
+                                @endif
+                            @else
+                                @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
+                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
+                                        <button><i class="fa-solid fa-xmark"></i></button>
+                                    </a>
+                                @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
+                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                        <button><i class="fa-solid fa-xmark"></i></button>
+                                    </a>
+                                @endif
                             @endif
-                        @else
-                            @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
-                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
-                                    <button><i class="fa-solid fa-xmark"></i></button>
-                                </a>
-                            @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
-                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
-                                    <button><i class="fa-solid fa-xmark"></i></button>
-                                </a>
-                            @endif
-                        @endif
-                        
-
+                        </div>
+                    </a>
                 </div>
             </div>
             </div>

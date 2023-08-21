@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+@include('alert')
     <h1 class="text-4xl mb-6 py-3 pl-12"><strong>Profile</strong></h1>
-    <div class="flex justify-between p-6 text-xl bg-white rounded-lg">
+    <div class="flex justify-between p-6 text-xl bg-white rounded-lg mx-auto max-w-7xl px-6 lg:px-8">
         <div class="w-1/2 pr-4 flex flex-col items-center">
             @if( $user->imgPath !== null )
                 <img src="{{ asset('storage/' . $user->imgPath) }}" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
@@ -10,14 +11,6 @@
                 <img src="/images/defaultProfile.jpeg" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
             @endif
             <p class="mt-2"><strong>UID</strong>: {{ $user->id }}</p>
-            @include('alert')
-            <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div>
-                    <input type="file" name="image" accept="image/*">
-                </div>
-                <button type="submit">Change Profile</button>
-            </form>
         </div>
         <div class="w-1/2">
             <ul>
@@ -25,15 +18,20 @@
                     Name : {{ $user->name }}</li>
                 <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
                     Email: {{ $user->email }}</li>
-                <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                    Certificate : {{ $user->certificate }}</li>
-                <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                    Year : {{ $user->year }}</li>
+                @if (!Auth::user()->isAdmin())
+                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                        Year : {{ $user->year }}</li>
+                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                            Certificate : <a href=" {{ route('certificates.index', ['user' => $user]) }} " class="md:hover:text-blue-700">view my certificate(s)</a>
+                        </li>
+                @endif
             </ul>
-            <div class="flex flex-row-reverse">
-                <a class="bg-light-blue w-1/4 p-4 rounded-full text-center"
-                   href = "{{ route('users.edit', ['user' => $user]) }}">
-                    Edit
-                </a>
-            </div>
+            @if (Auth::user()->id === $user->id)
+                <div class="flex flex-row-reverse">
+                    <a class="bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"
+                    href = "{{ route('users.edit', ['user' => $user]) }}">
+                        Edit
+                    </a>
+                </div>
+            @endif
 @endsection

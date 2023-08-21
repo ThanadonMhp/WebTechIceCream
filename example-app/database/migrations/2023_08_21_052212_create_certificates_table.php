@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Certificate;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -11,16 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->string('eventName');
-            $table->integer('budget');
-            $table->string('detail');
-            $table->string('status')->default('PENDING'); //pending,hide,show
-            $table->integer('size'); //How many participants are needed?
-            $table->string('imgPath')->default('/images/defaultEvent.jpg');
             $table->timestamps();
+            $table->string('imgPath');
+            $table->foreignIdFor(User::class); // user_id 
             $table->softDeletes();
+
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('certificates');
     }
 };

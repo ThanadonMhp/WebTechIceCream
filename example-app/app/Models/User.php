@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Event;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Event;
+use App\Models\Ceertificate;
+
 
 
 class User extends Authenticatable
@@ -48,6 +51,10 @@ class User extends Authenticatable
 
     public function events() : BelongsToMany {
         return $this->belongsToMany(Event::class)->withPivot('role');
+    }
+
+    public function certificates() : HasMany {
+        return $this->hasMany(Certificate::class);
     }
 
     public function isHost(string $id)

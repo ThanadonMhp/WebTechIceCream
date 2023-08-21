@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('imgPath')->nullable();
             $table->integer('year')->nullable();
-            $table->string('certificate')->nullable();
             $table->enum('role',['ADMIN','USER'])->default('USER')->comment('USER, ADMIN');
 
             $table->rememberToken();

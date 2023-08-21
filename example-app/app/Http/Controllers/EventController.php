@@ -8,12 +8,13 @@ use App\Models\Enums\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(5);
+        $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(10);
     return view('events.index' , [
             'events' => $events
             ]
@@ -25,7 +26,7 @@ class EventController extends Controller
         $user = Auth::user();
         $participatedEvents = Event::whereHas('users', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->paginate(5);
+        })->paginate(10);
         return view('events.index' , [
                 'events' =>  $participatedEvents
             ]
@@ -34,7 +35,7 @@ class EventController extends Controller
 
     public function pending() {
 
-        $events = Event::where('status', 'like', EventStatus::PENDING)->paginate(5);
+        $events = Event::where('status', 'like', EventStatus::PENDING)->paginate(10);
 
         return view('events.index' , [
             'events' =>  $events
@@ -58,7 +59,10 @@ class EventController extends Controller
             'budget' => ['required', 'integer', 'min:1'],
             'detail' => ['required', 'string', 'min:1', 'max:255'],
             'size' => ['required', 'integer', 'min:1'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
+
+        $imagePath = $request->file('image')->store('eventImages', 'public'); // Store image in 'public/images' folder
 
         $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
@@ -71,6 +75,7 @@ class EventController extends Controller
         $event->detail = $event_detail;
         $event->status = EventStatus::PENDING;
         $event->size = $event_size;
+        $event->imgPath = $imagePath;
 
         $event->save();
 
@@ -79,7 +84,7 @@ class EventController extends Controller
         ]);
 
 
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('success', 'Create an event successfully your status is "Pending"');
     }
 
     public function show(Event $event)
@@ -98,6 +103,29 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
+        $request->validate([
+            'eventName' => ['required', 'string', 'min:1'],
+            'budget' => ['required', 'integer', 'min:1'],
+            'detail' => ['required', 'string', 'min:1', 'max:255'],
+            'size' => ['required', 'integer', 'min:1'],
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+        ]);
+
+        if($request->file('image') != null )
+        {
+            $imagePath = $request->file('image')->store('eventImages', 'public'); // Store image in 'public/images' folder
+
+            if($event->imgPath != null)
+            {
+                if(Storage::disk('public')->exists($event->imgPath))
+                {
+                    Storage::disk('public')->delete($event->imgPath);
+                }
+            }
+            $event->imgPath = $imagePath;
+        }
+
+
         $event->eventName = $request->get('eventName');
         $event->budget = $request->get('budget');
         $event->detail = $request->get('detail');
@@ -122,7 +150,7 @@ class EventController extends Controller
         $event->status = EventStatus::SHOW;
         $event->save();
 
-        return redirect()->route('events.pending')->with('success', 'Accept the event successfully');;
+        return redirect()->route('events.pending')->with('success', 'Accept the event successfully');
 
     }
 
@@ -131,7 +159,7 @@ class EventController extends Controller
         $event->users()->detach();
         $event->delete();
 
-        return redirect()->route('events.pending')->with('success', 'Reject event successfully');;
+        return redirect()->route('events.pending')->with('success', 'Reject event successfully');
     }
 
     //end event
@@ -139,7 +167,7 @@ class EventController extends Controller
         $event->status = EventStatus::END;
         $event->save();
 
-        return redirect()->route('events.index')->with('success', 'Ended an event successfully');;
+        return redirect()->route('events.index')->with('success', 'Ended an event successfully');
     }
 
     /*

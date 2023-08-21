@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
     @include('layouts.subviews.navbar')
-
-    <main class="bg-light-pink p-4 h-full antialiased">
+    <main class="min-h-screen bg-light-pink">
         @yield('content')
     </main>
 </body>
+<footer>
+    @include('layouts.subviews.footer')
+</footer>
 </html>
+

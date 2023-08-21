@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 Route::controller(CertificateController::class)->group(function () {
     Route::get('/certificates/{user}', [CertificateController::class, 'index'])->name('certificates.index');
+
     Route::post('/certificates.store', [CertificateController::class, 'store'])->name('certificates.store');
 });
 
@@ -60,15 +61,10 @@ Route::controller(ProcessController::class)->group(function () {
     Route::get('/processes/destroy/{process}/{event}', [ProcessController::class, 'destroy'] )->name('processes.destroy');
 });
 
-Route::controller(ImageController::class)->group(function () {
-    Route::post('/upload-image', [ImageController::class, 'upload'])->name('upload.image');
-});
-
 Route::middleware(['auth'])->group(function () {
     Route::resource('/events' , EventController::class);
     Route::resource('/users' , UserController::class);
-    Route::resource('/processes', ProcessController::class);
-    Route::resource('/certificates', CertificateController::class);
+    Route::resource('/process', ProcessController::class);
 });
 
 //Route::get('/dashboard', function () {

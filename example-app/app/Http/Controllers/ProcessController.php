@@ -18,7 +18,6 @@ class ProcessController extends Controller
 
     public function store(Request $request, Event $event)
     {
-
         $newEvent = Event::find($request->get('event'));
         $process = new Process();
         $process->name = $request->get('name');
@@ -32,8 +31,8 @@ class ProcessController extends Controller
         ]);
     }
 
-    public function update(Request $request, Process $process, Event $event) {
-
+    public function update(Request $request, Process $process, Event $event)
+    {
         if($request->get('UPCOMING')) {
             $process->status = 'UPCOMING';
         }

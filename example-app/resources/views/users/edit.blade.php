@@ -30,23 +30,23 @@
                            autocomplete="off" placeholder="Put in your email"
                            class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
                 </li>
+                @if (!Auth::user()->isAdmin())
+                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                        Certificate :
+                        <input required type="text" id="certificate"
+                               name="certificate" value="{{ $user->certificate }}"
+                               autocomplete="off" placeholder="Put in your certificate"
+                               class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
+                    </li>
 
-                <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                    Certificate :
-                    <input required type="text" id="certificate"
-                           name="certificate" value="{{ $user->certificate }}"
-                           autocomplete="off" placeholder="Put in your certificate"
-                           class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
-                </li>
-
-                <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                    Old Year :
-                    <input required type="text" id="year"
-                           name="year" value="{{ $user->year }}"
-                           autocomplete="off" placeholder="Put in year of education"
-                           class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
-                </li>
-
+                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                        Old Year :
+                        <input required type="text" id="year"
+                               name="year" value="{{ $user->year }}"
+                               autocomplete="off" placeholder="Put in year of education"
+                               class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
+                    </li>
+                @endif
             </ul>
             <div class="flex flex-row-reverse">
                 <button type="submit "class="bg-light-blue w-1/4 p-4 rounded-full">

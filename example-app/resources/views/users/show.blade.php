@@ -21,16 +21,18 @@
                 </div>
             </form>
         </div>
-        <div class="w-1/2">
+        <div class="w-1/2" >
             <ul>
                 <li class="text-xl font-medium mb-4 px-12 pb-10 border-b-2 border-black">
                     Name : {{ $user->name }}</li>
                 <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
                     Email: {{ $user->email }}</li>
-                <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                    Certificate : {{ $user->certificate }}</li>
-                <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                    Year : {{ $user->year }}</li>
+                @if (!Auth::user()->isAdmin())
+                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                        Certificate : {{ $user->certificate }}</li>
+                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
+                        Year : {{ $user->year }}</li>
+                @endif
             </ul>
             <div class="flex flex-row-reverse">
                 <a class="bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"

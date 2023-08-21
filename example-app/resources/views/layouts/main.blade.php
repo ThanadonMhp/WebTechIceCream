@@ -16,5 +16,8 @@
         @yield('content')
     </main>
 </body>
+<footer>
+    @include('layouts.subviews.footer')
+</footer>
 </html>
 

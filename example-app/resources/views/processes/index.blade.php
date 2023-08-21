@@ -15,7 +15,7 @@
         </button>
     </form>
 </div>
-
+@if(!$processes->isEmpty())
     <div class="flex flex-wrap justify-center min-h-screen p-2 ">
       <div class="grid grid-cols-8 gap-5">
         <!-- To-do -->
@@ -124,7 +124,10 @@
           </div>
     </div>
     </div>
-
-
-
+@else
+    <div class="flex justify-between p-6 text-xl bg-white rounded-lg mx-auto max-w-7xl px-6 lg:px-8">
+    <h1 class="text-3xl border-2 border-white bg-white rounded-lg flex items-center justify-center">
+        No Currently Active Process</h1>
+    </div>
+@endif
 @endsection

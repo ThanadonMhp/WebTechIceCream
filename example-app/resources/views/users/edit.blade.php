@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<form action="{{ route('users.update', ['user' => $user] ) }}" method="POST">
+<form action="{{ route('users.update', ['user' => $user] ) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <h1 class="text-4xl mb-6 py-3 pl-12"><strong>Profile</strong></h1>
@@ -12,6 +12,7 @@
             @else
                 <img src="/images/defaultProfile.jpeg" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
             @endif
+            <input type="file" name="image" accept="image/*">
             <p class="mt-2"><strong>UID</strong>: {{ $user->id }}</p>
         </div>
         <div class="w-1/2">
@@ -31,14 +32,6 @@
                            class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
                 </li>
                 @if (!Auth::user()->isAdmin())
-                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                        Certificate :
-                        <input required type="text" id="certificate"
-                               name="certificate" value="{{ $user->certificate }}"
-                               autocomplete="off" placeholder="Put in your certificate"
-                               class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg">
-                    </li>
-
                     <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
                         Old Year :
                         <input required type="text" id="year"

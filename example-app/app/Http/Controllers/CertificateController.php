@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificate;
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +48,7 @@ class CertificateController extends Controller
 
         return redirect()->route('certificates.index', [
             'user' => $user
-        ])->with('success', 'Create an event successfully your status is "Pending"');
+        ])->with('success', 'Your ceritifcate has been added.');
     }
 
     /**

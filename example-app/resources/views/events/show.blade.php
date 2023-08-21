@@ -17,7 +17,7 @@
     <div class="p-6 space-y-6">
         <form action="#">
             <div class="grid grid-cols-6 gap-6">
-                
+
                 <div class="col-span-6 sm:col-span-3">
                     <label for="product-name" class="text-2xl font-medium text-gray-900 block mb-2">Event Title</label>
                         <p>{{ $event->eventName }}</p>
@@ -28,7 +28,13 @@
                     <p class="">{{ $event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() }}/{{ $event->size }}</p>
                 </div>
 
-                
+                @if(Auth::user()->isAdmin())
+                <div class="col-span-6 sm:col-span-3">
+                    <label for="product-name" class="text-2xl font-medium text-gray-900 block mb-2">Event Budget</label>
+                    <p>{{ $event->budget }}</p>
+                </div>
+                @endif
+
                 <div class="col-span-full">
                     <label for="product-details" class="text-2xl font-medium text-gray-900 block mb-2">Event description</label>
                     <p class="">{{ $event->detail }}</p>
@@ -85,7 +91,7 @@
             @else
                 @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
                     @if ($event->status !== App\Models\Enums\EventStatus::END)
-                        
+
                         <div class="flex py-5 w-2/3">
                             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400 "
                             href = "{{ route('processes.index', ['event' => $event]) }}">
@@ -188,7 +194,7 @@
             @else
                 @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
                     @if ($event->status !== App\Models\Enums\EventStatus::END)
-                        
+
                         <div class="flex py-5 w-2/3">
                             <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
                             href = "{{ route('processes.index', ['event' => $event]) }}">

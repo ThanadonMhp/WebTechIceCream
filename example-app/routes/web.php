@@ -25,8 +25,7 @@ Route::get('/', function () {
 
 Route::controller(CertificateController::class)->group(function () {
     Route::get('/certificates/{user}', [CertificateController::class, 'index'])->name('certificates.index');
-
-    Route::post('/certificates.store', [CertificateController::class, 'store'])->name('certificates.store');    
+    Route::post('/certificates.store', [CertificateController::class, 'store'])->name('certificates.store');
 });
 
 Route::controller(UserController::class)->group(function () {
@@ -68,7 +67,8 @@ Route::controller(ImageController::class)->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('/events' , EventController::class);
     Route::resource('/users' , UserController::class);
-    Route::resource('/process', ProcessController::class);
+    Route::resource('/processes', ProcessController::class);
+    Route::resource('/certificates', CertificateController::class);
 });
 
 //Route::get('/dashboard', function () {

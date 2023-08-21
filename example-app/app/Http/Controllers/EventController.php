@@ -8,6 +8,7 @@ use App\Models\Enums\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -58,7 +59,10 @@ class EventController extends Controller
             'budget' => ['required', 'integer', 'min:1'],
             'detail' => ['required', 'string', 'min:1', 'max:255'],
             'size' => ['required', 'integer', 'min:1'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
+
+        $imagePath = $request->file('image')->store('eventImages', 'public'); // Store image in 'public/images' folder
 
         $event_name = $request->get('eventName');
         $event_budget = $request->get('budget');
@@ -71,6 +75,7 @@ class EventController extends Controller
         $event->detail = $event_detail;
         $event->status = EventStatus::PENDING;
         $event->size = $event_size;
+        $event->imgPath = $imagePath;
 
         $event->save();
 
@@ -98,6 +103,29 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
+        $request->validate([
+            'eventName' => ['required', 'string', 'min:1'],
+            'budget' => ['required', 'integer', 'min:1'],
+            'detail' => ['required', 'string', 'min:1', 'max:255'],
+            'size' => ['required', 'integer', 'min:1'],
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+        ]);
+
+        if($request->file('image') != null )
+        {
+            $imagePath = $request->file('image')->store('eventImages', 'public'); // Store image in 'public/images' folder
+
+            if($event->imgPath != null)
+            {
+                if(Storage::disk('public')->exists($event->imgPath))
+                {
+                    Storage::disk('public')->delete($event->imgPath);
+                }
+            }
+            $event->imgPath = $imagePath;
+        }
+
+
         $event->eventName = $request->get('eventName');
         $event->budget = $request->get('budget');
         $event->detail = $request->get('detail');

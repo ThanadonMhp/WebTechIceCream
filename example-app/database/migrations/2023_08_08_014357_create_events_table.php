@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('detail');
             $table->string('status')->default('PENDING'); //pending,hide,show
             $table->integer('size'); //How many participants are needed?
+            $table->string('imgPath')->default('/images/defaultEvent.jpg');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,7 +5,7 @@
     @csrf
     @method('PUT')
     <h1 class="text-4xl mb-6 py-3 pl-12"><strong>Profile</strong></h1>
-    <div class="flex justify-between p-6 text-xl bg-white rounded-lg">
+    <div class="flex justify-between p-6 text-xl bg-white rounded-lg mx-auto max-w-7xl px-6 lg:px-8">
         <div class="w-1/2 pr-4 flex flex-col items-center">
             @if(!$user->imgPath === null)
                 <img src="{{ asset('storage/' . $user->imgPath) }}" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">

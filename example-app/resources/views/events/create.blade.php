@@ -66,10 +66,10 @@
                             {{ $message }}
                         </div>
                         @enderror
-                        <input required type="text" id="detail" name="detail" autocomplete="off"
-                                placeholder="Put in event description"
+                        <textarea required type="text" id="detail" name="detail" autocomplete="off"
                                 value="{{ old('detail', '') }}"
                         class="border border-gray-300 shadow px-3 pb-1 h-72 w-full rounded-lg align-top @error('detail') border-red-600 @enderror">
+                        </textarea>
                     </div>
                 </div>
 

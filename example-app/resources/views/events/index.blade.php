@@ -37,10 +37,11 @@
       {{ $events->links(); }}
       </div>
     @else
-
-      <h1 class="text-4xl h-screen border-2 border-white bg-white rounded-lg flex items-center justify-center">
-        No Currently Active Event</h1>
-
+        <div class="bg-white border border-4 rounded-lg shadow relative mx-10">
+          <h1 class="text-4xl h-screen border-2 border-white bg-white rounded-lg flex items-center justify-center">
+            No Currently Active Event</h1>
+        </div>
+        <div class="grid grid-cols-8 p-2"></div>
     @endif
 
 @endsection

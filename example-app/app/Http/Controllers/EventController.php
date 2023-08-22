@@ -77,6 +77,9 @@ class EventController extends Controller
         $event->size = $event_size;
         $event->imgPath = $imagePath;
 
+        $event->startDate = $request->get('startDate');
+        $event->endDate = $request->get('endDate');
+
         $event->save();
 
         $user->events()->attach($event->id, [

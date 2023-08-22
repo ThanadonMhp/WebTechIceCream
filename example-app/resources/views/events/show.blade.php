@@ -66,7 +66,7 @@
                             </div>
                         @else
                             <div class="flex py-5 w-2/3">
-                                <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center"
+                                <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center complete-btn"
                                 href = "{{ route('events.endEvent', ['event' => $event]) }}">
                                     END
                                 </a>
@@ -131,4 +131,25 @@
     </div>
 </form>
 
-@endsection
+<script>
+    document.querySelectorAll('.complete-btn').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Is it completed?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Complete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = button.getAttribute('href');
+                }
+            });
+        });
+    });
+</script>
+    @endsection
+

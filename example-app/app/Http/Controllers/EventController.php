@@ -14,6 +14,7 @@ class EventController extends Controller
 {
     public function index()
     {
+        
         $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(10);
     return view('events.index' , [
             'events' => $events
@@ -207,7 +208,7 @@ class EventController extends Controller
     {
         $user = Auth::user();
 
-        $participant->events()->updateExistingPivot($event, ['role' => 'PARTICIPANT']);
+        $participant->events()->updateExistingPivot($event, ['role' => 'STAFF']);
 
         return redirect()->route('events.show', ['event' => $event])->with('success', 'Accept request successfully');
 
@@ -225,5 +226,25 @@ class EventController extends Controller
 
         return redirect()->route('events.show', ['event' => $event])->with('success', 'Reject successfully');
 
+    }
+
+    public function participate(Request $request, Event $event)
+    {
+        $user = Auth::user();
+
+        $user->events()->attach($event, [
+            'role' => 'PARTICIPANT'
+        ]);
+
+        return redirect()->route('events.myevents')->with('success', 'Join event successfully');
+    }
+
+    public function resign(Request $request, Event $event)
+    {
+        $participant =Auth::user();
+
+        $participant->events()->detach($event);
+
+        return redirect()->route('events.show', ['event' => $event])->with('success', 'Leave event successfully');
     }
 }

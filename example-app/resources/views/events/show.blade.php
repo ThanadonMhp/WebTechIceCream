@@ -25,7 +25,7 @@
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="category" class="text-2xl font-medium text-gray-900 block mb-2">Number of Staffs</label>
-                    <p class="">{{ $event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() }}/{{ $event->size }}</p>
+                    <p class="">{{ $event->users->where('pivot.role', 'like', 'STAFF')->count() }}/{{ $event->size }}</p>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -83,18 +83,23 @@
                             </div>
                         @endif
                         @if(!Auth::user()->isJoin($event->id))
-                            @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() < $event->size)
+                            @if ($event->users->where('pivot.role', 'like', 'STAFF')->count() < $event->size)
                                 <div class="flex flex-row-reverse py-5 w-2/3">
                                     <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"
                                     href = "{{ route('events.join', ['event' => $event]) }}">
-                                        Join Event
+                                        Become Staff
                                     </a>
                                 </div>
                             @endif
+                            <div class="flex flex-row-reverse py-5 w-2/3">
+                                <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400"
+                                   href = "{{ route('events.participate', ['event' => $event]) }}">
+                                    Join Event
+                                </a>
+                            </div>
                         @else
-                            @if(Auth::user()->getRoleFromEvent($event->id) !== 'REQUESTED')
+                            @if(Auth::user()->getRoleFromEvent($event->id) == 'STAFF' or Auth::user()->getRoleFromEvent($event->id) == 'HOST')
                                 @if ($event->status !== App\Models\Enums\EventStatus::END)
-
                                     <div class="flex py-5 w-2/3">
                                         <a class= "bg-light-blue w-1/4 p-4 rounded-full text-center hover:bg-blue-400 "
                                         href = "{{ route('processes.index', ['event' => $event]) }}">
@@ -108,6 +113,14 @@
                                             Member
                                     </a>
                                 </div>
+                            @endif
+                            @if(Auth::user()->getRoleFromEvent($event->id) !== 'HOST')
+                            <div class="flex py-5 w-2/3 flex-reverse">
+                                <a href="{{ route('events.resign', ['event' => $event]) }}">
+                                    <button><i class="fa-solid fa-xmark"></i></button>
+                                    Leave Event
+                                </a>
+                            </div>
                             @endif
                         @endif
                     @endif

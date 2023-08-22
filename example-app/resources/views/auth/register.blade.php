@@ -41,6 +41,13 @@
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
+                    <!-- Year of commencement of study -->
+                    <div class="mt-4">
+                        <x-input-label for="year" :value="__('Year of commencement of study ')" />
+                        <x-text-input id="year" class="block mt-1 w-full" type="integer" name="year" :value="old('year')" required autocomplete="year" />
+                        <x-input-error :messages="$errors->get('year')" class="mt-2" />
+                    </div>
+
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" />

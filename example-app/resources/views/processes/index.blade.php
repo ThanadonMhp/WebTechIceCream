@@ -40,7 +40,7 @@
                               @csrf
                               @method('PUT')
                               <button type="submit" name="INPROCESS" value="INPROCESS" class="text-black bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">INPROCESS</button>
-                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6 complete-btn">COMPLETED</button>
+                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6 ">COMPLETED</button>
                               <h3 class="mb-2"></h3>
                               <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10 delete-btn" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                                   DELETE
@@ -75,9 +75,9 @@
                               @csrf
                               @method('PUT')
                               <button type="submit" name="UPCOMING" value="UPCOMING" class="text-black bg-pink-200 hover:bg-pink-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">UPCOMING</button>
-                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6 complete-btn">COMPLETED</button>
+                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6">COMPLETED</button>
                               <h3 class="mb-2"></h3>
-                              
+
                               <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10 delete-btn" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                                   DELETE
                               </a>
@@ -109,12 +109,13 @@
                           <form action="{{ route('processes.update', ['process' => $process , 'event' => $event ]) }}" method="POST">
                               @csrf
                               @method('PUT')
+                              <button type="submit" name="UPCOMING" value="UPCOMING" class="text-black bg-pink-200 hover:bg-pink-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">UPCOMING</button>
+                              <button type="submit" name="INPROCESS" value="INPROCESS" class="text-black bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6">INPROCESS</button>
                               <h3 class="mb-2"></h3>
-                              
                               <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10 delete-btn" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                                   DELETE
                               </a>
-                        
+
                               <h3 class="mb-2"></h3>
                               </form>
                       </div>

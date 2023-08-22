@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                         <div>
-                            @if ($event->users->where('pivot.role', 'like', 'PARTICIPANT')->count() < $event->size)    
+                            @if ($event->users->where('pivot.role', 'like', 'STAFF')->count() < $event->size)
                                 @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
                                     <a href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
                                         <button><i class="fa-solid fa-check"></i></button>
@@ -39,6 +39,10 @@
                                     <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
+                                @elseif($user->getRoleFromEvent($event->id) === 'STAFF')
+                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                    <button><i class="fa-solid fa-xmark"></i></button>
+                                </a>
                                 @endif
                             @endif
                         </div>
@@ -63,7 +67,7 @@
                 @endif
             @endforeach
         @endif
-        
+
     @else
 
       <h1 class="text-4xl h-screen border-2 border-white bg-white rounded-lg flex items-center justify-center">

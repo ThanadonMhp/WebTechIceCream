@@ -28,6 +28,15 @@
                     <p class="">{{ $event->users->where('pivot.role', 'like', 'STAFF')->count() }}/{{ $event->size }}</p>
                 </div>
 
+                <div class="col-span-6 sm:col-span-3">
+                    <label for="category" class="text-2xl font-medium text-gray-900 block mb-2">Start Date</label>
+                    <p class="">{{ $event->startDate }}</p>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                    <label for="category" class="text-2xl font-medium text-gray-900 block mb-2">End Date</label>
+                    <p class="">{{ $event->endDate }}</p>
+                </div>
 
                 <div class="col-span-full">
                     <label for="product-details" class="text-2xl font-medium text-gray-900 block mb-2">Event description</label>

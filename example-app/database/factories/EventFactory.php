@@ -23,6 +23,8 @@ class EventFactory extends Factory
             'detail' => fake()->realTextBetween(10,20,5),
             'status' => $status[array_rand($status)],
             'size' => fake()->numberBetween(1,50),
+            'startDate' => fake()->date('Y-m-d'),
+            'endDate' => fake()->date('Y-m-d'),
         ];
     }
 }

@@ -14,7 +14,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        
+
         $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(10);
     return view('events.index' , [
             'events' => $events
@@ -77,6 +77,9 @@ class EventController extends Controller
         $event->status = EventStatus::PENDING;
         $event->size = $event_size;
         $event->imgPath = $imagePath;
+
+        $event->startDate = $request->get('startDate');
+        $event->endDate = $request->get('endDate');
 
         $event->save();
 

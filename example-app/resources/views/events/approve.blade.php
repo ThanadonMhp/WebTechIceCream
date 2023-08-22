@@ -126,12 +126,12 @@
                 event.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want to delete this person!",
+                    text: "You want to delete this?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, reject it!'
+                    confirmButtonText: 'Yes!'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = button.getAttribute('href');

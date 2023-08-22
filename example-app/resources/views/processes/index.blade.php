@@ -40,9 +40,9 @@
                               @csrf
                               @method('PUT')
                               <button type="submit" name="INPROCESS" value="INPROCESS" class="text-black bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">INPROCESS</button>
-                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6">COMPLETED</button>
+                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6 complete-btn">COMPLETED</button>
                               <h3 class="mb-2"></h3>
-                              <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
+                              <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10 delete-btn" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                                   DELETE
                               </a>
                               <h3 class="mb-2"></h3>
@@ -75,9 +75,10 @@
                               @csrf
                               @method('PUT')
                               <button type="submit" name="UPCOMING" value="UPCOMING" class="text-black bg-pink-200 hover:bg-pink-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">UPCOMING</button>
-                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6">COMPLETED</button>
+                              <button type="submit" name="COMPLETED" value="COMPLETED" class="text-black bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-6 complete-btn">COMPLETED</button>
                               <h3 class="mb-2"></h3>
-                              <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
+                              
+                              <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10 delete-btn" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                                   DELETE
                               </a>
                               <h3 class="mb-2"></h3>
@@ -108,12 +109,12 @@
                           <form action="{{ route('processes.update', ['process' => $process , 'event' => $event ]) }}" method="POST">
                               @csrf
                               @method('PUT')
-                              <button type="submit" name="UPCOMING" value="UPCOMING" class="text-black bg-pink-200 hover:bg-pink-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">UPCOMING</button>
-                              <button type="submit" name="INPROCESS" value="INPROCESS" class="text-black bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-7">INPROCESS</button>
                               <h3 class="mb-2"></h3>
-                              <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
+                              
+                              <a class="mt-2 text-black bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 px-10 delete-btn" href="{{ route('processes.destroy', ['process' => $process , 'event' => $event ] )}} ">
                                   DELETE
                               </a>
+                        
                               <h3 class="mb-2"></h3>
                               </form>
                       </div>
@@ -130,4 +131,46 @@
         No Currently Active Process</h1>
     </div>
 @endif
+
+<script>
+        // Add SweetAlert for accept button
+        document.querySelectorAll('.complete-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Is it completed?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, accept it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+
+        // Add SweetAlert for reject button
+        document.querySelectorAll('.delete-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to delete this?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

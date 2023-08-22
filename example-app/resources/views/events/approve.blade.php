@@ -30,7 +30,7 @@
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
                                 @elseif($user->getRoleFromEvent($event->id) === 'STAFF')
-                                    <a class="reject-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                    <a class="delete-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
                                 @endif
@@ -131,7 +131,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, reject it!'
+                    confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = button.getAttribute('href');

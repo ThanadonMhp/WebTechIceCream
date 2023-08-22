@@ -59,6 +59,16 @@
                         class="border border-gray-300 shadow px-5 py-2 w-2/3 rounded-lg @error('budget') border-red-600 @enderror">
                     </div>
 
+                    <div class="form-group">
+                        <label for="category" class="text-sm font-medium text-gray-900 block mb-2">Start Date</label>
+                        <input data-provide="datepicker" data-date-format="dd-mm-yyyy" id="startDate" type="date" name="startDate" value="<?php echo date('Y-m-d'); ?>" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category" class="text-sm font-medium text-gray-900 block mb-2">End Date</label>
+                        <input data-provide="datepicker" data-date-format="dd-mm-yyyy" id="endDate" type="date" name="endDate" value="<?php echo date('Y-m-d'); ?>" />
+                    </div>
+
                     <div class="col-span-full">
                         <label for="product-details" class="text-sm font-medium text-gray-900 block mb-2">Event description</label>
                         @error('detail')

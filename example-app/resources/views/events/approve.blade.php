@@ -19,28 +19,32 @@
                         <div>
                             @if ($event->users->where('pivot.role', 'like', 'STAFF')->count() < $event->size)
                                 @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
-                                    <a href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
+                                    <a class="accept-btn" href="{{ route('events.accept', ['event' => $event, 'participant' => $user]) }}">
                                         <button><i class="fa-solid fa-check"></i></button>
                                     </a>
-                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
+                                    <a class="reject-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
                                 @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
-                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                    <a class="reject-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                        <button><i class="fa-solid fa-xmark"></i></button>
+                                    </a>
+                                @elseif($user->getRoleFromEvent($event->id) === 'STAFF')
+                                    <a class="reject-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
                                 @endif
                             @else
                                 @if ($user->getRoleFromEvent($event->id) === 'REQUESTED')
-                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
+                                    <a class="reject-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }}">
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
                                 @elseif($user->getRoleFromEvent($event->id) === 'PARTICIPANT')
-                                    <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                    <a class="delete-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                     </a>
                                 @elseif($user->getRoleFromEvent($event->id) === 'STAFF')
-                                <a href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
+                                <a class="delete-btn" href="{{ route('events.reject', ['event' => $event, 'participant' => $user]) }} ">
                                     <button><i class="fa-solid fa-xmark"></i></button>
                                 </a>
                                 @endif
@@ -74,5 +78,67 @@
         No Currently Active Event</h1>
 
     @endif
+
+    <script>
+        // Add SweetAlert for accept button
+        document.querySelectorAll('.accept-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to accept this request!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, accept it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+
+        // Add SweetAlert for reject button
+        document.querySelectorAll('.reject-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to reject this request!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, reject it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+
+        // Add SweetAlert for reject button
+        document.querySelectorAll('.delete-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to delete this person!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, reject it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+    </script>
 
 @endsection

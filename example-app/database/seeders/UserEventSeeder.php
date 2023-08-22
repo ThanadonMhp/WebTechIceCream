@@ -19,7 +19,7 @@ class UserEventSeeder extends Seeder
         $events = Event::get();
 
         for ($i=1; $i < 21; $i++) { 
-            User::find($i)->events()->attach(Event::find($i), [
+            User::find($i+1)->events()->attach(Event::find($i), [
                 'role' => "HOST"
             ]);
         }

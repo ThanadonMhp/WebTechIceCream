@@ -41,20 +41,6 @@
                     </div>
                     @enderror
                 </li>
-                @if (!Auth::user()->isAdmin())
-                    <li class="text-xl font-medium mb-4 p-10 border-b-2 border-black">
-                        Year :
-                        <input required type="text" id="year"
-                               name="year" value="{{ $user->year }}"
-                               autocomplete="off" placeholder="Put in year of education"
-                               class="border border-gray-300 shadow mb-4 px-5 pb-2.5 w-2/3 rounded-lg @error('year') border-red-600 @enderror">
-                        @error('year')
-                        <div class="text-red-600">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </li>
-                @endif
             </ul>
             <div class="flex flex-row-reverse">
                 <button type="submit "class="bg-light-blue w-1/4 p-4 rounded-full">

@@ -10,7 +10,6 @@ First time setup command : make<br />
 To start web please open docker and run these command<br />
 &nbsp;sail up -d<br />
 &nbsp;sail yarn dev<br />
-&nbsp;sail artisan storage:link<br />
 <br />
 Related Link for Databases and Design.<br />
 -https://lucid.app/lucidchart/3a56664a-2209-4512-a823-2196fdbaebf7/edit?viewport_loc=-4624%2C-1458%2C3328%2C1634%2C0_0&invitationId=inv_c4b3a92a-3586-4f8b-9450-d091aaf4a47e <br />

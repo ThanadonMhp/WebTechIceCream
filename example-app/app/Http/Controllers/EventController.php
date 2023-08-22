@@ -14,6 +14,7 @@ class EventController extends Controller
 {
     public function index()
     {
+        
         $events = Event::where('status', 'like', EventStatus::SHOW)->paginate(10);
     return view('events.index' , [
             'events' => $events
